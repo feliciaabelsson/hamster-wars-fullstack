@@ -15,7 +15,7 @@ async function sendRequest(saveData: any) {
 
 const Gallery = () => {
     const [hamsterData, setHamsterData] = useState<Hamster[] | null>(null);
-    console.log("HAMSTER DATA: ", hamsterData)
+    //console.log("HAMSTER DATA: ", hamsterData)
     const dispatch = useDispatch()
 
 
@@ -31,9 +31,12 @@ const Gallery = () => {
 
 
     return (
-        <div>
-            <h1 className="gallery-title"> Gallery</h1>
-
+        <div className="gallery-container">
+            <header className="gallery-header">
+                <h1 className="gallery-title"> Gallery</h1>
+                <p>Here is all of our hamsters. Please, fill free to upload a new one, delete a current one or click on each hamster for more information about each and every unique hamster.</p>
+                <button className="main-btn">Add hamster</button>
+            </header>
             <div className="hamster-grid">
                 {hamsterData ?
                     hamsterData.map(hamster => (

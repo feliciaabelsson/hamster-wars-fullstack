@@ -5,71 +5,114 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 2em;
-  }
+    margin-top: 10%;
+}
   
-  .introduction-container h1 {
+/* --- Introduction --- */
+
+.introduction-container h1 {
     font-family: var(--feature-font);
     color: var(--dark-orange);
     font-size: 7em;
     margin: 0;
-  }
-  
-  .wars-h1 {
+}
+
+.wars-h1 {
     position: relative;
     top: -.5em;
-  }
-  
-  .hamster-logo-h1 {
+}
+
+.hamster-logo-h1 {
     max-width: 1em;
     margin-right: .3em;
     margin-top: 0;
     position: relative;
     top: .3em;
     transform: rotate(5deg);
-  }
-  
-  .first-place-container {
+}
+
+.introduction-container p {
+    max-width: 350px;
+}
+
+.hero-container button {
+    min-width: 350px;
+}
+
+
+/* XXX --- Introduction --- XXX */
+
+/* --- First Place --- */
+
+.first-place-container {
     background-color: var(--muddy-yellow);
     border-radius: var(--box-radius);
     box-shadow: var(--box-shadow);
     text-align: center;
     padding: 1em;
-    min-width: 20em;
-  }
-  
-  .first-place-container h2 {
+    padding-bottom: 2em;
+    max-width: 20em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first-place-container div {
+    background-color: white;
+    max-width: 80%;
+    border-radius: var(--box-radius);
+    padding: .5em .5em 1em .5em;
+}
+
+.first-place-container img {
+    width: 100%;
+    border-radius: var(--box-radius);
+}
+
+.first-place-container h2 {
     text-transform: uppercase;
-  }
+    margin-top: 0;
+}
   
-  .first-place-container h2 span {
+.first-place-container h2 span {
     color: var(--orange);
     font-size: 2em;
-  }
+}
+
+.first-place-container h4 {
+    font-size: 1.5em;
+    margin: .5em 0;
+}
   
-  .first-place-container div {
-    background-color: white;
-    /* margin: 0 .5em; */
-    min-height: 8em;
-    border-radius: var(--box-radius);
-  }
+/* XXX --- First Place --- XXX */
   
   
-  /* Responsive designs */
+/* Responsive designs */
   
-  /* Bigger smartphones*/
-  @media screen and (max-width: 1078px) {
+/* Bigger smartphones*/
+@media screen and (max-width: 1078px) {
     .introduction-container {
-      text-align: center;
+        text-align: center;
     }
-  }
+
+    .hero-container {
+        gap: 5em;
+    }
+
+    .introduction-container p {
+        max-width: 100%;
+        margin: 2em 0;
+    }
+    
+}
   
-  /* Small smartphones */
-  @media screen and (max-width: 580px) {
+/* Small smartphones */
+@media screen and (max-width: 580px) {
     .introduction-container h1 {
-      font-size: 4em;
+        font-size: 4em;
     }
-  
+
     .first-place-container {
-      min-width: 1em;
+        min-width: 1em;
     }
-  }
+}
