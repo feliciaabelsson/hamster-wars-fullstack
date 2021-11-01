@@ -1,0 +1,70 @@
+
+.gallery-title {
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--light-blue);
+}
+
+.hamster-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    /* margin-top: 4rem; */
+    margin: 4rem 4rem 0 4rem;
+}
+
+.hamster-card {
+    text-align: left;
+    box-shadow: var(--box-shadow);
+    background-color: white;
+    border-radius: var(--box-radius);
+    padding: .5em .5em 1em .5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.hamster-card:hover {
+    transition: all .5s;
+    transform: scale(1.01);
+}
+
+.hamster-card h3 {
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.hamster-card h3, .hamster-card p {
+    padding-left: 1rem;
+}
+
+.hamster-card p  {
+    font-size: .9em;
+}
+
+.hamster-image {
+    max-width: 200px;
+    border-radius: var(--box-radius);
+    /* border-top-left-radius: 5px;
+    border-top-right-radius: 5px; */
+}
+
+.remove-btn {
+    background-color: var(--light-blue); 
+    color: var(--mint);
+    border: none;
+    border-radius: 4em;
+    width: 90%;
+    padding: .5em;
+    font-size: .9em;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: center;
+}
+
+.remove-btn:hover {
+    background-color: var(--darkest);
+    transition: .8s all;
+    color: grey;
+}

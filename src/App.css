@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700;800&family=Slackey&display=swap');
 
+/* --- Global --- */
+
 :root {
   /* Colors */
   --dark-orange: #CA6702;
@@ -11,35 +13,69 @@
   --darkest: #001219;
 
   /* Fonts */
-  --main-font: 'Slackey', cursive; 
+  --feature-font: 'Slackey', cursive; 
   --open-sans: 'Open Sans', cursive;
+
+  /* Main features */
+  --box-radius: .5em;
+  --box-shadow: 4px 5px 10px 1px rgba(0, 0, 0, 0.11);
+  --transition-hover: .2s all;
+  --scale-hover: scale(1.02);
+}
+
+* {
+  font-family: var(--open-sans);
+}
+
+.main-btn {
+  background-color: var(--orange); 
+  color: var(--darkest);
+  border: none;
+  border-radius: 4em;
+  min-width: 20em;
+  padding: 1em;
+  font-size: 1em;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.main-btn:hover {
+  background-color: var(--dark-orange);
+  transition: var(--transition-hover);
+  color: var(--muddy-yellow);
+  transform: var(--scale-hover)
 }
 
 .App {
-  padding: 0em 4em;
+  padding: 2em 4em;
   min-height: 100vh;
   background-image: linear-gradient(to bottom right, rgba(234,185,43,0.2), rgba(245,221,153,0.2), rgba(234,185,43,0.2) );
   background-repeat: no-repeat;
   background-size: cover;
+} 
+
+/* XXX --- Global --- XXX */
+
+/* --- Nav --- */
+
+
+
+.nav-link {
+  color: var(--light-blue);
+  text-decoration: none;
+  margin-right: 2em;
+  text-transform: uppercase;
 }
 
-.introduction-container h1 {
-  font-family: var(--main-font);
-  color: var(--dark-orange);
-  font-size: 7em;
-  margin: 0;
+.nav-link:hover {
+  color: var(--orange);
+  transition: var(--transition-hover);
+  /* font-size: 1.1rem; */ /* TODO: gör så att texten kan hovras större utan att störa annat*/
 }
 
-.wars-h1 {
-  position: relative;
-  top: -.5em;
+.nav-link:active {
+  color: #CA6702;
 }
 
-.hamster-logo-h1 {
-  max-width: 1em;
-  margin-right: .3em;
-  margin-top: 0;
-  position: relative;
-  top: .3em;
-  transform: rotate(5deg);
-}
+/* XXX --- Nav --- XXX */

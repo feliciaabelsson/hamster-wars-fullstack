@@ -34,6 +34,10 @@ app.use("/", express.static(__dirname + '/../public'))
 // talar om att hamstersRouter middleware ska användas för alla routes som börjar med /hamsters
 app.use("/hamsters", hamsterRouter);
 
+app.get('*', (req, res) => {
+	res.sendFile(__dirname + '/build/index.html')
+})
+
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}.`);
 });

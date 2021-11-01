@@ -1,0 +1,75 @@
+
+.hero-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+  
+  .introduction-container h1 {
+    font-family: var(--feature-font);
+    color: var(--dark-orange);
+    font-size: 7em;
+    margin: 0;
+  }
+  
+  .wars-h1 {
+    position: relative;
+    top: -.5em;
+  }
+  
+  .hamster-logo-h1 {
+    max-width: 1em;
+    margin-right: .3em;
+    margin-top: 0;
+    position: relative;
+    top: .3em;
+    transform: rotate(5deg);
+  }
+  
+  .first-place-container {
+    background-color: var(--muddy-yellow);
+    border-radius: var(--box-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    padding: 1em;
+    min-width: 20em;
+  }
+  
+  .first-place-container h2 {
+    text-transform: uppercase;
+  }
+  
+  .first-place-container h2 span {
+    color: var(--orange);
+    font-size: 2em;
+  }
+  
+  .first-place-container div {
+    background-color: white;
+    /* margin: 0 .5em; */
+    min-height: 8em;
+    border-radius: var(--box-radius);
+  }
+  
+  
+  /* Responsive designs */
+  
+  /* Bigger smartphones*/
+  @media screen and (max-width: 1078px) {
+    .introduction-container {
+      text-align: center;
+    }
+  }
+  
+  /* Small smartphones */
+  @media screen and (max-width: 580px) {
+    .introduction-container h1 {
+      font-size: 4em;
+    }
+  
+    .first-place-container {
+      min-width: 1em;
+    }
+  }
