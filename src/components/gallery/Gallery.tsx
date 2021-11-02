@@ -1,58 +1,38 @@
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
 import { Hamster } from "../../models/Hamster"
-import { RootState } from "../../store"
-import hamsterImg from "../../hamsters/hamster-1.jpg" /* Temporary image, TODO: Fix image url */
 import "./gallery.css"
+import Overlay from "./Overlay"
+import Header from "./Header"
+import HamsterGrid from "./HamsterGrid"
 
-async function sendRequest(saveData: any) {
 
-    const response = await fetch('http://localhost:1337/hamsters/')
-    const data = await response.json()
-    // console.log("fetched data: ", data)
-    saveData(data)
-}
 
 const Gallery = () => {
-    const [hamsterData, setHamsterData] = useState<Hamster[] | null>(null);
-    //console.log("HAMSTER DATA: ", hamsterData)
-    const dispatch = useDispatch()
 
+    const [showAddHamsterOverlay, setShowAddHamsterOverlay] = useState<boolean>(false)
 
-    useEffect(() => {
-        sendRequest(setHamsterData)
-    }, [])
+    const addHamster = (hamster: Hamster) => {
+        // TODO: anropa setMovies
+        console.log('App.addHamster anropad med hamster=', hamster)
+    }
 
+    /* TODO: Fråga angående error när jag tar bort :any */
+    let addHamsterOverlay: any = null
+    if (showAddHamsterOverlay) {
+        const closeOverlay = () => setShowAddHamsterOverlay(false)
+        addHamsterOverlay = <Overlay close={closeOverlay} addHamster={addHamster} />
+    }
 
-
-    // const hamsters = useSelector((state: RootState) => state.hamsters)
-    // console.log(hamsters)
-
-
+    const showOverlay = () => {
+        // visa overlay
+        setShowAddHamsterOverlay(true)
+    }
 
     return (
         <div className="gallery-container">
-            <header className="gallery-header">
-                <h1 className="gallery-title"> Gallery</h1>
-                <p>Here is all of our hamsters. Please, fill free to upload a new one, delete a current one or click on each hamster for more information about each and every unique hamster.</p>
-                <button className="main-btn">Add hamster</button>
-            </header>
-            <div className="hamster-grid">
-                {hamsterData ?
-                    hamsterData.map(hamster => (
-                        <article key={hamster.id} className="hamster-card">
-                            <img className="hamster-image" src={hamsterImg} alt="hamster" />
-                            <h3>{hamster.name}</h3>
-                            <p>Ålder: {hamster.age} <br></br>
-                                Favoritmat: {hamster.favFood}
-                            </p>
-                            <button className="remove-btn">Remove</button>
-                        </article>
-
-                    ))
-                    : 'Loading hamsters...'
-                }
-            </div>
+            <Header addHamster={showOverlay} />
+            <HamsterGrid />
+            {addHamsterOverlay}
         </div>
 
 

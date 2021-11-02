@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import Hamsterlogo from "../../assets/hamster-logo.png"
 
 const Introduction = () => {
+
     return (
         <article className="introduction-container">
             <div>
@@ -9,7 +11,8 @@ const Introduction = () => {
             </div>
             <h3>How to play?</h3>
             <p>Simple. Just click on the hamster that you think is the cutest.</p>
-            <button className="main-btn">Play</button>
+
+            <Link to="/play"> <button className="main-btn">Play</button></Link>
         </article>
     )
 }

@@ -7,10 +7,11 @@ import { useEffect, useState } from "react"
 // Actions på böcker:
 // const borrowBook = createAction<Loan>('borrow book')
 // const returnBook = createAction<BookId>('return book')
+const addHamster = createAction<Hamster>('Add hamster to gallery')
 // strängarna är ID för boken som lånas eller återlämnas
 
-const getHamster = createAction('get hamsters')
-const actions = { getHamster }
+// const getHamster = createAction('get hamsters')
+const actions = { addHamster }
 
 
 

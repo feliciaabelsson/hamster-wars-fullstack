@@ -1,0 +1,91 @@
+
+
+.overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.66);
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+}
+
+.overlay .dialog {
+    background-color: var(--muddy-yellow);
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em 1.5rem;
+    border-radius: var(--box-radius);
+}
+
+.overlay .dialog form {
+    display: flex;
+    flex-direction: column;
+    font-weight:bold; 
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    background-color: white;
+}
+
+#name, #age {
+    background-color: white;
+}
+
+.overlay .dialog form input {
+    /* background-color: white; */ /* Funkar ej utan att ange id likt ovan */
+    margin-bottom: 1rem;
+    padding: .5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--box-radius);
+}
+
+.overlay .dialog form label {
+    margin-bottom: .3rem;
+}
+
+.overlay .dialog .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1.5rem;
+
+    border-radius: 50%;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    font-weight: bold;
+    background-color: var(--darkest);
+    color: var(--muddy-yellow);
+    cursor: pointer;
+}
+
+.overlay .dialog .close-btn:hover {
+    background-color: var(--dark-orange);
+    color: var(--bg-color);
+    transition: .3s all;
+  }
+
+.overlay .dialog .add-movie-btn {
+    position: absolute;
+    bottom: .3rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 1rem;
+    padding: .7rem 2rem;
+    background-color: var(--yellow);
+    border-radius: var(--standard-border-radius);
+    color: var(--bg-color);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overlay .dialog .add-movie-btn:hover {
+    background-color: var(--bg-color);
+    color: var(--yellow);
+}
