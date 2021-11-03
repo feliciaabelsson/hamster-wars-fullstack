@@ -15,7 +15,7 @@ const HamsterGrid = () => {
 
         return hamsters.map(hamster =>
             <article key={hamster.id} className="hamster-card">
-                <img className="hamster-image" src={"hamsters/" + hamster.imgName} alt="hamster" />
+                <img className="hamster-image" src={"hamsters/" + hamster.imgName} alt="hamster" width="300" height="300" />
                 <h3>{hamster.name}</h3>
                 <p>Ålder: {hamster.age} <br></br>
                     Favoritmat: {hamster.favFood}

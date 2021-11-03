@@ -54,11 +54,19 @@
     padding: .5em .5em 1em .5em;
     display: flex;
     flex-direction: column;
+    
 }
 
 .hamster-card:hover {
     transition: all .5s;
     transform: scale(1.01);
+}
+
+.hamster-image  {
+    object-fit: cover;  
+    border-radius: var(--box-radius);
+    /* border-top-left-radius: 5px;
+    border-top-right-radius: 5px; */
 }
 
 .hamster-card h3 {
@@ -74,12 +82,9 @@
     font-size: .9em;
 }
 
-.hamster-image {
-    max-width: 200px;
-    border-radius: var(--box-radius);
-    /* border-top-left-radius: 5px;
-    border-top-right-radius: 5px; */
-}
+
+
+
 
 .remove-btn {
     background-color: var(--light-blue); 
