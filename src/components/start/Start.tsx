@@ -7,7 +7,7 @@ import "./start.css";
 const Start = () => {
 
     return (
-        <section className="hero-container">
+        <section className="hero-container container">
             <Introduction />
             <CutestHamster />
         </section>

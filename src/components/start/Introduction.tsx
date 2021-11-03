@@ -5,7 +5,7 @@ const Introduction = () => {
 
     return (
         <article className="introduction-container">
-            <div>
+            <div className="hamster-wars-intro-logo">
                 <h1>Hamster </h1>
                 <h1 className="wars-h1"><span><img className="hamster-logo-h1" src={Hamsterlogo} alt="Hamster-wars logotype" /></span>wars</h1>
             </div>

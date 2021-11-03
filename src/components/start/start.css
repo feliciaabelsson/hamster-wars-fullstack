@@ -10,7 +10,7 @@
   
 /* --- Introduction --- */
 
-.introduction-container h1 {
+.hamster-wars-intro-logo h1 {
     font-family: var(--feature-font);
     color: var(--dark-orange);
     font-size: 7em;
@@ -108,7 +108,7 @@
   
 /* Small smartphones */
 @media screen and (max-width: 580px) {
-    .introduction-container h1 {
+    .hamster-wars-intro-logo h1 {
         font-size: 4em;
     }
 

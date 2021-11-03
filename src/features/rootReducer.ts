@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 // import { booksReducer } from './booksReducer'
 // import { loansReducer } from './loansReducer'
 // import { cardReducer } from './libraryCardReducer'
-import { hamsterReducer } from './hamsterReducer'
+// import { hamsterReducer } from './hamsterReducer'
+import hamsterReducer from './hamsters'
 import { reducer as formReducer } from 'redux-form'
 
 const rootReducer = combineReducers({

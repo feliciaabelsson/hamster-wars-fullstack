@@ -1,7 +1,9 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
 import { Hamster } from '../models/Hamster'
 
-import { useEffect, useState } from "react"
+// import { useEffect, useState } from "react"
+
+
 
 
 // Actions på böcker:
