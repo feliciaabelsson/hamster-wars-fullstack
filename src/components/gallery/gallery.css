@@ -31,7 +31,6 @@
    font-weight: 700;
 }
 
-
 .gallery-header button:hover {
     background-color: var(--orange);
     color: rgb(255, 252, 245);
@@ -54,7 +53,6 @@
     padding: .5em .5em 1em .5em;
     display: flex;
     flex-direction: column;
-    
 }
 
 .hamster-card:hover {
@@ -81,8 +79,6 @@
 .hamster-card p  {
     font-size: .9em;
 }
-
-
 
 
 

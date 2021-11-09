@@ -21,14 +21,30 @@
     display: flex;
 }
 
-.cutest-hamster-img {
-    width: 100%;
+.contestant-hamster-img{
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+    /* object-position: center center; */
 }
 
 .vote-btn {
     max-width: 80%;
     margin: 2em 0 1em 0;
     align-self: center;
+}
+
+.play-container {
+    display: flex;
+    gap: 40em;
+    align-items: center;
+}
+
+.vs-string {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Bigger smartphones*/

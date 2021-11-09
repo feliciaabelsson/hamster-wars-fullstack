@@ -1,59 +1,110 @@
-import { createAction, createReducer } from '@reduxjs/toolkit'
+
+import { createSlice } from '@reduxjs/toolkit'
 import { Hamster } from '../models/Hamster'
 
-// import { useEffect, useState } from "react"
+
+// Since we will be fetching data from an external database, we need a way to indicate 
+// the success or failure of that request to the UI so that we may update it accordingly, 
+// and we accomplish this by firing actions to update the states of loading, hasErrors, and recipes.
+export const initialState: State = {
+    loading: false,
+    hasErrors: false,
+    hamsters: []
+}
+
+interface State {
+    loading: boolean,
+    hasErrors: boolean,
+    hamsters: Hamster[]
+}
+
+// A slice for hamsters with our reducers
+const hamstersSlice = createSlice({
+    name: 'hamsters',
+    initialState,
+    reducers: {
+        getHamsters: state => {
+            state.loading = true
+        },
+        getHamstersSuccess: (state, { payload }) => {
+            state.hamsters = payload
+            state.loading = false
+            state.hasErrors = false
+        },
+        getHamstersFailure: state => {
+            state.loading = false
+            state.hasErrors = true
+        },
+        hamsterAdded(state, action) {
+            state.hamsters.push(action.payload)
+        },
+        removeHamster(state, action) {
+            // state.hamsters = action.payload
+            const { id } = action.payload;
+            // console.log(id);
+            console.log(`action.payload = ${action.payload}`);
+            state.hamsters = state.hamsters.filter(item => item.id !== id)
+        },
+        getRandomHamster(state, action) {
+
+        }
+    },
+})
+
+// The actions generated from the slice
+export const { getHamsters, getHamstersSuccess, getHamstersFailure, hamsterAdded, removeHamster } = hamstersSlice.actions
 
 
+//The selector merely exports the current state of the hamster array.
+export const hamstersSelector = state => state.hamsters
+
+// The reducer
+export default hamstersSlice.reducer
 
 
-// Actions på böcker:
-// const borrowBook = createAction<Loan>('borrow book')
-// const returnBook = createAction<BookId>('return book')
-const addHamster = createAction<Hamster>('Add hamster to gallery')
-// strängarna är ID för boken som lånas eller återlämnas
-
-// const getHamster = createAction('get hamsters')
-const actions = { addHamster }
-
-
-
-// Initial state - vanligtvis så hämtar vi datan från ett API
-const initialState: Hamster[] = [
-    {
-        id: '123',
-        name: "Sixten",
-        age: 1,
-        favFood: "ostbollar",
-        loves: "springa i hamsterhjulet",
-        imgName: "hamster-1.jpg",
-        wins: 2,
-        defeats: 3,
-        games: 5
+export const deleteHamster = (id) => {
+    return async dispatch => {
+        dispatch(removeHamster(id));
     }
-
-]
-
-const hamsterReducer = createReducer(initialState, {})
+};
 
 
-// Övning: ta reda på hur man kan ange typen för ett action-objekt
-// const booksReducer = createReducer(initialState, {
-// 	[borrowBook.toString()]: (state, action) => {
-// 		const id: BookId = action.payload.bookId
-// 		return state.map(book => {
-// 			// Längre, kanske tydligare
-// 			if( book.id !== id ) {
-// 				return book
-// 			} else {
-// 				return { ...book, stock: book.stock - 1 }
-// 			}
-// 			// Mer kompakt alternativ
-// 			// return book.id === id ? { ...book, stock: book.stock - 1 } : book
-// 		})
-// 	},
+// Asynchronous thunk action
+export function fetchHamsters() {
+    return async dispatch => {
+        dispatch(getHamsters())
+        // dispatch(removeHamster())
+
+        try {
+            const response = await fetch('http://localhost:1337/hamsters/')
+            const data = await response.json()
+
+            dispatch(getHamstersSuccess(data))
+        } catch (error) {
+            dispatch(getHamstersFailure())
+        }
+    }
+}
 
 
-// })
 
 
-export { actions, hamsterReducer }
+
+
+// // Initial state - vanligtvis så hämtar vi datan från ett API
+// const initialState: Hamster[] = [
+//     {
+//         id: '123',
+//         name: "Sixten",
+//         age: 1,
+//         favFood: "ostbollar",
+//         loves: "springa i hamsterhjulet",
+//         imgName: "hamster-1.jpg",
+//         wins: 2,
+//         defeats: 3,
+//         games: 5
+//     }
+
+// ]
+
+

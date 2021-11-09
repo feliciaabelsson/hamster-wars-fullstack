@@ -7,13 +7,13 @@ import Start from './components/start/Start';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 // import our recipes selector & fetchHamsters thunk
-import { fetchHamsters, hamstersSelector } from './features/hamsters'
+import { fetchHamsters, hamstersSelector } from './features/hamsterReducer'
 
 
 function App() {
 
   const dispatch = useDispatch()
-  const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
+  const { hamsters } = useSelector(hamstersSelector)
   // log the data we have pulled into the recipes variable
   console.log('Hamsters: ', hamsters);
 
