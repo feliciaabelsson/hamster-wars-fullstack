@@ -80,8 +80,6 @@
     font-size: .9em;
 }
 
-
-
 .remove-btn {
     background-color: var(--light-blue); 
     color: var(--mint);
@@ -100,4 +98,41 @@
     background-color: var(--darkest);
     transition: .5s all;
     color: grey;
+}
+
+.hamster-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamster-overlay-dialog {
+    background-color: var(--muddy-yellow);
+    max-width: 500px;
+    padding: 1em;
+    border-radius: var(--box-radius);
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.hamster-overlay-dialog img {
+    max-width: 100%;
+    border-radius: var(--box-radius);
+}
+
+
+.hamster-overlay-dialog .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1.5rem;
+
+    border-radius: 50%;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    font-weight: bold;
+    background-color: var(--darkest);
+    color: var(--muddy-yellow);
+    cursor: pointer;
 }

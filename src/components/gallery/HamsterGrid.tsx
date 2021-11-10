@@ -4,34 +4,62 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { hamstersSelector, removeHamster } from '../../features/hamsterReducer'
 import "./gallery.css"
-
+import HamsterOverlay from './HamsterOverlay';
+import { Hamster } from "../../models/Hamster"
 
 
 const HamsterGrid = () => {
-    const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
-    const [isShown, setIsShown] = useState(false)
     const dispatch = useDispatch();
 
+    const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
+    const [isShown, setIsShown] = useState(false)
+    const [showAddHamsterOverlay, setShowAddHamsterOverlay] = useState<boolean>(false)
+    const [hamster, setHamster] = useState()
 
-
-    // const [editingAnimalId, setEditingAnimalId] = useState<string>('')
-
+    //Delete hamster
     const handleDeleteClick = (hamster) => {
         console.log('You delteeeed: ', hamster.id)
         dispatch(removeHamster({ id: hamster.id }));
     }
 
+    async function deleteHamster(id: string) {
+        await fetch('http://localhost:1337/hamsters/' + id,
+            {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            })
+        // const hamsterData = await response.json()
+        // console.log("deleted: ", hamsterData)
+    }
+
+    // const addHamster = (hamster: Hamster) => {
+    //     // TODO: anropa setMovies
+    //     console.log('App.addHamster anropad med hamster=', hamster.id)
+    // }
+
+    //Overlay
+    let addHamsterOverlay: any = null
+    if (showAddHamsterOverlay) {
+        const closeOverlay = () => setShowAddHamsterOverlay(false)
+        addHamsterOverlay = <HamsterOverlay close={closeOverlay} hamster={hamster} />
+        console.log('Hejhååå')
+    }
+
     const handleShowMore = (hamster) => {
         console.log('you clickeeeed', hamster.id)
-        setIsShown(true)
+        setShowAddHamsterOverlay(true)
+        setHamster(hamster)
 
-        let addHamsterOverlay: any = null
-        if (isShown) {
-            const closeOverlay = () => setIsShown(false)
-            addHamsterOverlay = <div className="overlay-hamster">{hamster.favFood} <button onClick={() => closeOverlay()}></button></div>
-            console.log('Hejhååå')
-        }
+
+        // const closeOverlay = () => setShowAddHamsterOverlay(false)
+        // addHamsterOverlay = <HamsterOverlay close={closeOverlay} hamster={hamster} />
+
     }
+
+    // const showOverlay = () => {
+    //     // visa overlay
+    //     setShowAddHamsterOverlay(true)
+    // }
 
     // error handling & map successful query data 
     const renderHamsters = () => {
@@ -41,15 +69,15 @@ const HamsterGrid = () => {
 
         return hamsters.map(hamster =>
             <article key={hamster.id} className="hamster-card">
-                <img onClick={() => handleShowMore(hamster)}
+                <img onClick={() => { handleShowMore(hamster); }}
                     className="hamster-image" src={"hamsters/" + hamster.imgName} alt="hamster" width="300" height="300" >
                 </img>
                 <h3>{hamster.name}</h3>
                 <p>Ålder: {hamster.age} <br></br>
                     Favoritmat: {hamster.favFood}
                 </p>
-                <button onClick={() => handleDeleteClick(hamster)} className="remove-btn">Remove</button>
-                {isShown && <div>{hamster.favFood}</div>}
+                <button onClick={() => { deleteHamster(hamster.id); handleDeleteClick(hamster); }} className="remove-btn">Remove</button>
+                {/* {isShown && <div>{hamster.favFood}</div>} */}
             </article>
         )
     }
@@ -58,6 +86,7 @@ const HamsterGrid = () => {
     return (
         <div className="hamster-grid">
             {renderHamsters()}
+            {addHamsterOverlay}
         </div>
     )
 }
