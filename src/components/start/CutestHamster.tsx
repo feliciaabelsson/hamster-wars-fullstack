@@ -12,9 +12,9 @@ import { Hamster } from "../../models/Hamster"
 */
 
 async function sendRequest(saveData: any) {
-    const response = await fetch('http://localhost:1337/hamsters/cutest')
+    const response = await fetch('/hamsters/cutest')
     const data = await response.json()
-    // console.log("fetched data: ", data)
+    console.log("the cutest hamster: ", data)
     saveData(data)
 }
 

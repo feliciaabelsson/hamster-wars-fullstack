@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { hamstersSelector, removeHamster } from '../../features/hamsterReducer'
-
 import "./gallery.css"
 
 
@@ -13,13 +12,14 @@ const HamsterGrid = () => {
     const [isShown, setIsShown] = useState(false)
     const dispatch = useDispatch();
 
+
+
     // const [editingAnimalId, setEditingAnimalId] = useState<string>('')
 
     const handleDeleteClick = (hamster) => {
         console.log('You delteeeed: ', hamster.id)
         dispatch(removeHamster({ id: hamster.id }));
     }
-
 
     const handleShowMore = (hamster) => {
         console.log('you clickeeeed', hamster.id)
@@ -61,5 +61,7 @@ const HamsterGrid = () => {
         </div>
     )
 }
+
+
 
 export default HamsterGrid;

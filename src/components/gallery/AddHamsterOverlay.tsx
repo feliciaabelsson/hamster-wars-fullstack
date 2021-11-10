@@ -1,12 +1,9 @@
 
-import { Hamster } from "../../models/Hamster"
 import { useState } from 'react'
-import './Overlay.css'
-
 import { useDispatch } from 'react-redux'
 import { hamsterAdded } from "../../features/hamsterReducer"
-import { nanoid } from '@reduxjs/toolkit'
-// import { useFirestore } from 'react-redux-firebase'
+import { Hamster } from "../../models/Hamster"
+import './AddHamsterOverlay.css'
 
 
 interface OverlayProps {
@@ -16,59 +13,47 @@ interface OverlayProps {
 
 const Overlay = ({ close, addHamster }: OverlayProps) => {
 
-    // const firebase = useFirebase()
-    // const firestore = useFirestore()
     const dispatch = useDispatch()
 
+    //Inputfält 
     const [name, setName] = useState<string>('')
-    // const [id, setId] = useState<string>('')
     const [age, setAge] = useState<number>(0)
     const [imgName, setImgName] = useState<string>('')
     const [favFood, setFavFood] = useState<string>('')
     const [loves, setLoves] = useState<string>('')
-    // const [wins, setWins] = useState<number>(0)
-    // const [defeats, setDefeats] = useState<number>(0)
-    // const [games, setGames] = useState<number>(0)
 
-
+    //onChanges 
     const onNameChange = e => setName(e.target.value)
     const onAgeChange = e => setAge(e.target.value)
     const onImgChange = e => setImgName(e.target.value)
     const onFavFoodChange = e => setFavFood(e.target.value)
     const onLovesChange = e => setLoves(e.target.value)
 
-    const onAddHamsterClicked = () => {
-        if (name && age && imgName && favFood && loves) {
-            dispatch(
-                hamsterAdded({
-                    id: nanoid(),
-                    name,
-                    age,
-                    imgName,
-                    favFood,
-                    loves
-                })
-            )
-            setName('')
-            setAge(0)
-            setImgName('')
-            setFavFood('')
-            setLoves('')
-        }
-        // return firestore.collection('hamsters').add(hamsterAdded)
+
+    //Data som skickas till POST-requestet
+    const hamsterData = {
+        name: name,
+        age: age,
+        imgName: imgName,
+        loves: loves,
+        favFood: favFood,
+        games: 0,
+        wins: 0,
+        defeats: 0
     }
 
+    const addNewHamster = async () => {
+        const response = await fetch('http://localhost:1337/hamsters/',
+            {
+                method: 'POST',
+                headers: { Accept: 'application/json', "Content-Type": "application/json" },
+                body: JSON.stringify(hamsterData)
+            })
 
-    const handleAddHamster = () => {
-        // förbered Hamster-objekt och anropa addMovie-funktionen
-        let hamster: Hamster = {
-            // Hämta riktiga värden från formuläret
-            name: name, age: 0, imgName: imgName, favFood: favFood, loves: loves, wins: 0, defeats: 0, games: 0
-        }
-        addHamster(hamster)
-        close()
+        const newHamster = await response.json()
+        console.log("You added a hamster: ", newHamster);
+        dispatch(hamsterAdded(newHamster))
     }
-
 
 
     return (
@@ -108,7 +93,7 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
                         value={favFood}
                         onChange={onFavFoodChange}
                     />
-                    <label htmlFor="loves">Add favorite food</label>
+                    <label htmlFor="loves">What does it love?</label>
                     <input
                         id="loves"
                         type="text"
@@ -116,16 +101,12 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
                         value={loves}
                         onChange={onLovesChange}
                     />
-
                 </form>
                 <div>
                     {/* När jag klickar på Add hamster ska jag dispatcha till funktionen (aka, skicka actionet till store) */}
-                    <button className="main-btn" onClick={onAddHamsterClicked}> Add hamster </button>
+                    <button className="main-btn" onClick={() => { addNewHamster(); close(); }}> Add hamster </button>
                     <button className="close-btn" onClick={close}>X</button>
                 </div>
-
-
-
             </div>
         </div>
     )

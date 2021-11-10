@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Hamster } from "../../models/Hamster"
 import "./gallery.css"
-import Overlay from "./Overlay"
+import Overlay from "./AddHamsterOverlay"
 import Header from "./Header"
 import HamsterGrid from "./HamsterGrid"
 
@@ -35,29 +35,9 @@ const Gallery = () => {
             {addHamsterOverlay}
         </div>
 
-
-
-        // <>
-        // <h1> Hamsters </h1>
-        // <button onClick={() => setShowAddForm(!showAddForm)}>Add Hamster</button>
-
-        // { showAddForm ? 
-        //     <AddForm show={showAddForm} set={setShowAddForm} />
-        // : null}
-        // <section className="gallery-container">
-        // { allHamsters? 
-
-        // allHamsters.map(x => (
-        //     <Card key={x.id} hamster={x} /* deleteItem={handleDelete} showInfo={handleShowInfo}  */
-        //     hamsters={allHamsters} setHamsters={setAllHamsters} /* showDisplay={showDisplayHamster} display={displayHamster} */ />
-
-        //     ))
-        //     : 'Loading hamsters...'}
-
-        // </section>
-        // </>
     )
 }
+
 
 
 

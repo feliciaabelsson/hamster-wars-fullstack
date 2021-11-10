@@ -47,6 +47,10 @@
     transform: translate(-50%, -50%);
 }
 
+.winner-overlay-container {
+    background-color: rgba(0, 0, 0, 0.421);
+}
+
 /* Bigger smartphones*/
 @media screen and (max-width: 1300px) {
 

@@ -12,7 +12,8 @@ const {isHamsterObject, isHamster} = require("../validations/validation");
 // GET ENDPOINTS
 router.get("/", async (req, res) => {
   let array = await getAllHamsters();
-  // console.log(array);
+  //console.log(array);
+  console.log('GET/ is OK')
   res.status(200).send(array);
 });
 
@@ -31,6 +32,7 @@ router.get("/random", async (req, res) => {
   let randomHamster =
   array[Math.floor(Math.random() * array.length)]
   res.status(200).send(randomHamster)
+  console.log(randomHamster)
 });
 
 
@@ -65,19 +67,17 @@ router.post("/", async (req, res) => {
 
 //PUT ENDPOINTS
 router.put("/:id", async (req, res) => { 		
-	let body = req.body
-	if (!isHamster(body)){
-		res.sendStatus(400);
-		return;
-	}
-
-	const newHamsterInfo = await updateHamster(req.params.id, body);
-	if(!newHamsterInfo) {
-		res.sendStatus(404);
-		return;
+	let maybeBody = req.body
+  let maybeHamster = await getOneHamster(req.params.id)
+  
+  if(!maybeHamster) {
+    res.status(400).send('not a hamster with this id')
+  } else if(!isHamsterObject(maybeBody, 'some')){
+		res.status(400).send('hamster body is not correct');
 	} else {
-		res.sendStatus(200)
-	}
+    await updateHamster(req.params.id, maybeBody)
+    res.sendStatus(200)
+  }
 })
 
 

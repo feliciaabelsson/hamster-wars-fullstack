@@ -25,17 +25,18 @@ app.use((req, res, next) => {
   next();
 });
 
-// MIDDLEWARE - statiska sidor
-app.use("/img", express.static(__dirname + '/hamsters'))
-app.use("/", express.static(__dirname + '/../public'))
-
-
 // Routes
 // talar om att hamstersRouter middleware ska användas för alla routes som börjar med /hamsters
 app.use("/hamsters", hamsterRouter);
 
+// MIDDLEWARE - statiska sidor
+app.use("/img", express.static(__dirname + '/hamsters'))
+app.use("/", express.static(__dirname + '/../build'))
+
+
+
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/build/index.html')
+  res.sendFile(__dirname + '/build/index.html')
 })
 
 app.listen(PORT, () => {

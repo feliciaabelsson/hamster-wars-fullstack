@@ -1,6 +1,7 @@
 
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { Hamster } from '../models/Hamster'
+import HamsterDataService from "../services/hamsterService"
 
 
 // Since we will be fetching data from an external database, we need a way to indicate 
@@ -47,9 +48,23 @@ const hamstersSlice = createSlice({
         },
         getRandomHamster(state, action) {
 
+        },
+        addNewHamster(state, action) {
+
         }
     },
 })
+
+
+// const updateWinner = async (x: Hamster) => {
+//     setWinner(x)
+//     //PUT update wins ++, games ++
+//     await fetch("http://localhost:1337/hamsters/" + x.id, {
+//         method: 'PUT',
+//         body: JSON.stringify({ wins: x.wins + 1, games: x.games + 1 }),
+//         headers: { "Content-Type": "application/json" }
+//     })
+// }
 
 // The actions generated from the slice
 export const { getHamsters, getHamstersSuccess, getHamstersFailure, hamsterAdded, removeHamster } = hamstersSlice.actions
@@ -69,7 +84,32 @@ export const deleteHamster = (id) => {
 };
 
 
-// Asynchronous thunk action
+export const createHamster: any = createAsyncThunk(
+    "hamsters/create",
+    async (hamster) => {
+        const res = await HamsterDataService.create(hamster);
+        return res.data;
+    }
+);
+
+// const addHamsterSlice = createSlice({
+//     name: 'hamstergallery',
+//     initialState,
+//     reducers: {},
+//     extraReducers: {
+//         [createHamster.fulfilled]: (state, action) => {
+//             state.push(action.payload)
+//         },
+//     },
+// })
+
+// const {reducer} = addHamsterSlice
+
+
+
+
+
+// Asynchronous thunk action for fetching all hamsters from api
 export function fetchHamsters() {
     return async dispatch => {
         dispatch(getHamsters())
@@ -78,7 +118,7 @@ export function fetchHamsters() {
         try {
             const response = await fetch('http://localhost:1337/hamsters/')
             const data = await response.json()
-
+            console.log("Data from fetch in reducer: ", data)
             dispatch(getHamstersSuccess(data))
         } catch (error) {
             dispatch(getHamstersFailure())
@@ -89,22 +129,5 @@ export function fetchHamsters() {
 
 
 
-
-
-// // Initial state - vanligtvis så hämtar vi datan från ett API
-// const initialState: Hamster[] = [
-//     {
-//         id: '123',
-//         name: "Sixten",
-//         age: 1,
-//         favFood: "ostbollar",
-//         loves: "springa i hamsterhjulet",
-//         imgName: "hamster-1.jpg",
-//         wins: 2,
-//         defeats: 3,
-//         games: 5
-//     }
-
-// ]
 
 
