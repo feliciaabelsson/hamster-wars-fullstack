@@ -107,9 +107,21 @@
 }
   
 /* Small smartphones */
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 660px) {
     .hamster-wars-intro-logo h1 {
         font-size: 4em;
+    }
+
+    .first-place-container {
+        min-width: 1em;
+    }
+}
+
+/* Iphone X and smaller */
+@media screen and (max-width: 440px) {
+
+    .hamster-wars-intro-logo h1 {
+        font-size: 3em;
     }
 
     .first-place-container {

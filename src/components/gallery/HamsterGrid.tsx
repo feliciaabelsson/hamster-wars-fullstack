@@ -32,10 +32,7 @@ const HamsterGrid = () => {
         // console.log("deleted: ", hamsterData)
     }
 
-    // const addHamster = (hamster: Hamster) => {
-    //     // TODO: anropa setMovies
-    //     console.log('App.addHamster anropad med hamster=', hamster.id)
-    // }
+
 
     //Overlay
     let addHamsterOverlay: any = null
@@ -49,17 +46,8 @@ const HamsterGrid = () => {
         console.log('you clickeeeed', hamster.id)
         setShowAddHamsterOverlay(true)
         setHamster(hamster)
-
-
-        // const closeOverlay = () => setShowAddHamsterOverlay(false)
-        // addHamsterOverlay = <HamsterOverlay close={closeOverlay} hamster={hamster} />
-
     }
 
-    // const showOverlay = () => {
-    //     // visa overlay
-    //     setShowAddHamsterOverlay(true)
-    // }
 
     // error handling & map successful query data 
     const renderHamsters = () => {
@@ -73,8 +61,8 @@ const HamsterGrid = () => {
                     className="hamster-image" src={"hamsters/" + hamster.imgName} alt="hamster" width="300" height="300" >
                 </img>
                 <h3>{hamster.name}</h3>
-                <p>Ålder: {hamster.age} <br></br>
-                    Favoritmat: {hamster.favFood}
+                <p>Age: {hamster.age} <br></br>
+                    Favorite food: {hamster.favFood}
                 </p>
                 <button onClick={() => { deleteHamster(hamster.id); handleDeleteClick(hamster); }} className="remove-btn">Remove</button>
                 {/* {isShown && <div>{hamster.favFood}</div>} */}

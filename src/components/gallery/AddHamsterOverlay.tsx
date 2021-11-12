@@ -29,6 +29,17 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
     const onFavFoodChange = e => setFavFood(e.target.value)
     const onLovesChange = e => setLoves(e.target.value)
 
+    //Valideringar
+    // ett godkänt namn är en sträng med minst två tecken
+	const nameIsValid = isValidName(name)
+	const nameClass = nameIsValid ? 'valid' : 'invalid'
+	// en godkänd ålder är ett tal som är >= 0 OCH är ett heltal
+	const ageIsValid = isValidAge(age)
+
+    const formIsValid = nameIsValid && ageIsValid
+
+
+
 
     //Data som skickas till POST-requestet
     const hamsterData = {
@@ -104,12 +115,25 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
                 </form>
                 <div>
                     {/* När jag klickar på Add hamster ska jag dispatcha till funktionen (aka, skicka actionet till store) */}
-                    <button className="main-btn" onClick={() => { addNewHamster(); close(); }}> Add hamster </button>
+                    <button className="main-btn"  disabled={!formIsValid} onClick={() => { addNewHamster(); close(); }}> Add hamster </button>
                     <button className="close-btn" onClick={close}>X</button>
                 </div>
             </div>
         </div>
     )
+}
+
+
+function isValidName(name: string): boolean {
+    return name.length >= 2
+}
+function isValidAge(age: number): boolean {
+    if( isNaN(age) ) return false
+    if( age < 0 ) return false
+    let ageString = String(age)
+    if( ageString.includes(',') || ageString.includes('.') ) return false
+    // Alternativa sätt att kontrollera om ett tal har decimaler: x % 1 !=== 0, (x - Math.floor(x)) !== 0
+    return true
 }
 
 

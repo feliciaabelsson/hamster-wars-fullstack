@@ -6,7 +6,7 @@
 
 .hamster-match-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-top: 6em;
 }
@@ -19,6 +19,11 @@
 .hamster-match-card {
     max-width: 30em;
     display: flex;
+    align-items: center;
+}
+
+.hamster-match-card h3 {
+    padding: 0;
 }
 
 .contestant-hamster-img{
@@ -36,32 +41,45 @@
 
 .play-container {
     display: flex;
-    gap: 40em;
+    gap: 10em;
     align-items: center;
 }
 
-.vs-string {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.play-container :nth-child(2) {
+    order: 2;
 }
 
 .winner-overlay-container {
     background-color: rgba(0, 0, 0, 0.421);
 }
 
-/* Bigger smartphones*/
-@media screen and (max-width: 1300px) {
-
-    .hamster-match-card {
-        max-width: 22em;
+/* Bigger smartphones & tablets */
+@media screen and (max-width: 1300px) and (min-width: 900px) {
+    
+    .play-container {
+        align-items: center;
+        justify-content: center;
+        gap: 6em;
     }
     
+    .hamster-match-card {
+        width: 300px;
+        margin-top: 0;
+    }
+    
+    .hamster-match-card img {
+        width: 100%;
+        object-fit: cover;
+        max-height: 300px;
+    }
+
+    .vote-btn {
+        min-width: 17em;
+    }
 }
 
-/* Smaller smartphones*/
-@media screen and (max-width: 800px) {
+/* Smartphones */
+@media screen and (max-width: 900px) and (min-width: 630px ){
 
     .hamster-match-container {
         flex-direction: column;
@@ -70,12 +88,47 @@
     }
 
     .hamster-wars-intro-logo h1 {
-        font-size: 5em;
+        font-size: 1em;
+    }
+
+    .play-container {
+        flex-direction: column;
+        gap: 5em;
     }
 }
 
-@media screen and (max-width: 500px) {
-    .hamster-wars-intro-logo h1 {
-        font-size: 3.2em;
+/* Smaller smartphones */
+@media screen and (max-width: 630px) {
+
+    .play-container {
+        flex-direction: column;
+        gap: 4em;
     }
+
+    .hamster-match-container {
+        margin-top: 6em;
+    }
+
+}
+
+/* Iphone X and smaller */
+@media screen and (max-width: 440px) {
+
+    .play-container {
+        flex-direction: column;
+        gap: 3em;
+    }
+
+    .hamster-match-container {
+        margin-top: 6em;
+    }
+
+    .hamster-match-card {
+        max-width: 20em;
+    }
+
+    .hamster-match-card img{
+        max-width: 100%;
+    }
+
 }

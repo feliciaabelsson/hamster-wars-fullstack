@@ -63,6 +63,7 @@
 .hamster-image  {
     object-fit: cover;  
     border-radius: var(--box-radius);
+    cursor: pointer;
     /* border-top-left-radius: 5px;
     border-top-right-radius: 5px; */
 }
@@ -104,28 +105,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+  
 }
 
 .hamster-overlay-dialog {
     background-color: var(--muddy-yellow);
-    max-width: 500px;
+    width: 20em;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 1em;
     border-radius: var(--box-radius);
-    /* display: flex;
-    flex-direction: column; */
 }
 
-.hamster-overlay-dialog img {
-    max-width: 100%;
+.hamster-overlay-dialog .overlay-hamster-image {
+    width: 100%;
+    max-height: 200px;
     border-radius: var(--box-radius);
+    object-fit: cover;
 }
-
 
 .hamster-overlay-dialog .close-btn {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 1.5rem;
+    margin: .5rem;
 
     border-radius: 50%;
     border: none;
@@ -136,3 +143,45 @@
     color: var(--muddy-yellow);
     cursor: pointer;
 }
+
+.hamster-overlay-dialog .close-btn:hover {
+    background-color: var(--dark-orange);
+    color: var(--bg-color);
+    transition: .3s all;
+  }
+
+.overlay-information-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 3em;
+}
+
+.overlay-information-box h2 span {
+    font-size: .7em;
+    font-weight: 400;
+}
+
+.overlay-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.match-history {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    text-align: center;
+}
+
+.vl {
+    border-left: 2px solid rgba(0, 0, 0, 0.226);
+    height: 70px;
+  }
+
+  .span-container {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+  }

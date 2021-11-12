@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { Hamster } from "../../models/Hamster"
+import { useSelector } from 'react-redux'
+import { hamstersSelector, removeHamster } from '../../features/hamsterReducer'
 
 /*
     TODO:
-    Visa den hamster som vunnit mest. Vi räknar (antal vinster) - (antal förluster). 
     Om det är oavgjort mellan flera hamstrar, ska appen slumpa en av dem. 
     (Backend endpoint /hamsters/cutest.)
 
@@ -19,6 +20,9 @@ async function sendRequest(saveData: any) {
 }
 
 const CutestHamster = () => {
+
+    const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
+ 
     const [hamster, setHamster] = useState<Hamster[] | null>(null);
     // console.log("HAMSTER DATA: ", hamster)
     // const dispatch = useDispatch()
@@ -28,24 +32,33 @@ const CutestHamster = () => {
         sendRequest(setHamster)
     }, [])
 
-    return (
-        <article className="first-place-container">
-            {/* TODO: Lägga till (rendera) vinnar-hamstern*/}
-            <h2>In <span>1st</span> place</h2>
 
+
+    const renderHamster = () => {
+        if (loading) return <p>Loading cutest hamster...</p>
+        if (hasErrors) return <p>Cannot display hamster...</p>
+
+
+        return (
+            <div>
             {hamster ?
                 hamster.map(h => (
                     <div key={h.id}>
                         <img src={"hamsters/" + h.imgName} alt="hamster" className="cutest-hamster-img" />
                         <h4>{h.name}</h4>
                     </div>
-                ))
-                : 'Loading cutest hamster...'
+                )) : null
             }
+        </div>
+        )        
+    }
 
+ 
 
-
-
+    return (
+        <article className="first-place-container">
+            <h2>In <span>1st</span> place</h2>
+            {renderHamster()}
         </article>
     )
 }

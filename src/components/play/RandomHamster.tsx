@@ -1,11 +1,15 @@
 
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Hamster } from "../../models/Hamster"
 import ShowWinner from './ShowWinner'
+import { hamstersSelector, removeHamster } from '../../features/hamsterReducer'
+
 
 
 const RandomHamster = () => {
+    const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
+ 
     const [contestants, setContestants] = useState<Hamster[] | null>(null)
     const [showResult, setShowResult] = useState<boolean>(false)
     const [winner, setWinner] = useState<Hamster | null>(null)
@@ -105,26 +109,38 @@ const RandomHamster = () => {
         setShowAddMovieOverlay(true)
     }
 
+    const renderHamsters = () => {
+        if (loading) return <p>Loading hamsters...</p>
+        if (hasErrors) return <p>Cannot display hamsters...</p>
 
-    return (
 
-        <div className="play-container">
+        return (
+            <div className="play-container">
             {contestants ?
                 contestants.map(hamster => (
                     <article key={hamster.id} className="hamster-card hamster-match-card" >
                         <img className="contestant-hamster-img" alt="hamster" src={"hamsters/" + hamster.imgName} ></img>
-                        <h3>{hamster.name}</h3>
                         <button
                             className="main-btn vote-btn"
                             onClick={() => handleCutestClick(hamster)}>
                             I'm the CUTEST
                         </button>
+                        <h3>{hamster.name}</h3>
                     </article>
                 ))
-                : 'Loading hamsters...'
+                : null
             }
             <h1 className="vs-string"> VS.</h1>
-            {/* {addHamsterOverlay} */}
+            </div>
+        
+        )        
+    }
+
+
+    return (
+
+        <div >
+            {renderHamsters()}
         </div>
     )
 }
