@@ -46,10 +46,26 @@ const hamstersSlice = createSlice({
             console.log(`action.payload = ${action.payload}`);
             state.hamsters = state.hamsters.filter(item => item.id !== id)
         },
-        getRandomHamster(state, action) {
+        winnerHamsterUpdate(state, action) {
+            const { id, wins, defeats, games } = action.payload;
+            const existingHamster = state.hamsters.find(hamster => hamster.id === id);
+            if (existingHamster) {
+                const newItem = { wins: existingHamster.wins + 1, games: existingHamster.games + 1 }
+                // existingHamster.wins = wins
+                // existingHamster.defeats = defeats
+                // existingHamster.games = games
 
+            }
         },
-        addNewHamster(state, action) {
+        loserHamsterUpdate(state, action) {
+            const { id, wins, defeats, games } = action.payload;
+            const existingHamster = state.hamsters.find(hamster => hamster.id === id);
+            if (existingHamster) {
+                const newItem = { defeats: existingHamster.wins + 1, games: existingHamster.games + 1 }
+                // existingHamster.wins = wins
+                // existingHamster.defeats = defeats
+                // existingHamster.games = games
+            }
 
         }
     },

@@ -94,3 +94,10 @@
     background-color: var(--bg-color);
     color: var(--yellow);
 }
+
+.valid {
+	border-color: #14971E;
+}
+.invalid {
+	border-color: #E0471F;
+}

@@ -21,9 +21,13 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
     const [imgName, setImgName] = useState<string>('')
     const [favFood, setFavFood] = useState<string>('')
     const [loves, setLoves] = useState<string>('')
+    const [clickedField, setClickField] = useState<boolean>(false)
 
     //onChanges 
-    const onNameChange = e => setName(e.target.value)
+    const onNameChange = e => {
+        setName(e.target.value)
+        setClickField(true)
+    }
     const onAgeChange = e => setAge(e.target.value)
     const onImgChange = e => setImgName(e.target.value)
     const onFavFoodChange = e => setFavFood(e.target.value)
@@ -31,14 +35,27 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
 
     //Valideringar
     // ett godkänt namn är en sträng med minst två tecken
-	const nameIsValid = isValidName(name)
-	const nameClass = nameIsValid ? 'valid' : 'invalid'
-	// en godkänd ålder är ett tal som är >= 0 OCH är ett heltal
-	const ageIsValid = isValidAge(age)
+    const nameIsValid = isValidName(name)
+    const ageIsValid = isValidAge(age)
 
     const formIsValid = nameIsValid && ageIsValid
 
+    // const nameClass = nameIsValid ? 'valid' : 'invalid'
 
+
+    function isValidName(name: string): boolean {
+        // console.log(name)
+        return name.length >= 2
+    }
+
+    function isValidAge(age: number): boolean {
+        if (isNaN(age)) return false
+        if (age < 0) return false
+        let ageString = String(age)
+        if (ageString.includes(',') || ageString.includes('.')) return false
+        // Alternativa sätt att kontrollera om ett tal har decimaler: x % 1 !=== 0, (x - Math.floor(x)) !== 0
+        return true
+    }
 
 
     //Data som skickas till POST-requestet
@@ -74,6 +91,11 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
                 <form>
                     <label htmlFor="name">Write a name</label>
                     <input
+                        className={nameIsValid ? 'valid' : 'invalid'}
+                        // {!nameIsValid && clickedField ?
+                        //     <span className="input-alert" >Namnet måste vara minst två tecken.</span>
+                        //     : null
+                        // }
                         id="name"
                         type="text"
                         placeholder="Write a name"
@@ -114,8 +136,9 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
                     />
                 </form>
                 <div>
-                    {/* När jag klickar på Add hamster ska jag dispatcha till funktionen (aka, skicka actionet till store) */}
-                    <button className="main-btn"  disabled={!formIsValid} onClick={() => { addNewHamster(); close(); }}> Add hamster </button>
+                    {/* När jag klickar på Add hamster ska jag dispatcha till funktionen (aka, skicka actionet till store) 
+                    TODO: När jag lägger till får jag ett felmeddelande med GET, försöker fetcha med angivet namn?*/}
+                    <button className="main-btn" disabled={!formIsValid} onClick={() => { addNewHamster(); close(); }}> Add hamster </button>
                     <button className="close-btn" onClick={close}>X</button>
                 </div>
             </div>
@@ -124,17 +147,7 @@ const Overlay = ({ close, addHamster }: OverlayProps) => {
 }
 
 
-function isValidName(name: string): boolean {
-    return name.length >= 2
-}
-function isValidAge(age: number): boolean {
-    if( isNaN(age) ) return false
-    if( age < 0 ) return false
-    let ageString = String(age)
-    if( ageString.includes(',') || ageString.includes('.') ) return false
-    // Alternativa sätt att kontrollera om ett tal har decimaler: x % 1 !=== 0, (x - Math.floor(x)) !== 0
-    return true
-}
+
 
 
 export default Overlay

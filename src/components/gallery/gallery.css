@@ -101,6 +101,8 @@
     color: grey;
 }
 
+/* ----- HamsterOverlay onClick ----- */
+
 .hamster-overlay {
     display: flex;
     justify-content: center;

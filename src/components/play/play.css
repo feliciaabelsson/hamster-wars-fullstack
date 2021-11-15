@@ -11,7 +11,7 @@
     margin-top: 6em;
 }
 
-.hamster-match-container h1 {
+.hamster-match-container .vs-string {
     font-family: var(--feature-font);
     font-size: 4em;
 }
@@ -49,9 +49,46 @@
     order: 2;
 }
 
+
+/* ----- WINNER OVERLAY ----- */
+
 .winner-overlay-container {
-    background-color: rgba(0, 0, 0, 0.421);
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.66);
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.winner-hamster-card {
+    display: flex;
+    align-items: center;
+    padding: 1.5em;
+}
+
+.winner-hamster-h1 {
+    font-family: var(--feature-font);
+    font-size: 2em;
+}
+
+.winner-overlay-container .main-btn {
+    margin: 2em 0 1em 0;
+}
+
+.winner-overlay-container .vl {
+    border-left: 2px solid rgba(0, 0, 0, 0.089);
+}
+
+.winner-overlay-container .hamster-card:hover {
+    transform: scale(1.0);
+}
+
+
+/* ----- Responsive Design ------ */
 
 /* Bigger smartphones & tablets */
 @media screen and (max-width: 1300px) and (min-width: 900px) {

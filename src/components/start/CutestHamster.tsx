@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Hamster } from "../../models/Hamster"
 import { useSelector } from 'react-redux'
-import { hamstersSelector, removeHamster } from '../../features/hamsterReducer'
+import { hamstersSelector } from '../../features/hamsterReducer'
 
 /*
     TODO:
@@ -22,7 +22,7 @@ async function sendRequest(saveData: any) {
 const CutestHamster = () => {
 
     const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
- 
+
     const [hamster, setHamster] = useState<Hamster[] | null>(null);
     // console.log("HAMSTER DATA: ", hamster)
     // const dispatch = useDispatch()
@@ -41,19 +41,17 @@ const CutestHamster = () => {
 
         return (
             <div>
-            {hamster ?
-                hamster.map(h => (
-                    <div key={h.id}>
-                        <img src={"hamsters/" + h.imgName} alt="hamster" className="cutest-hamster-img" />
-                        <h4>{h.name}</h4>
-                    </div>
-                )) : null
-            }
-        </div>
-        )        
+                {hamster ?
+                    hamster.map(h => (
+                        <div key={h.id}>
+                            <img src={"hamsters/" + h.imgName} alt="hamster" className="cutest-hamster-img" />
+                            <h4>{h.name}</h4>
+                        </div>
+                    )) : null
+                }
+            </div>
+        )
     }
-
- 
 
     return (
         <article className="first-place-container">

@@ -59,13 +59,14 @@
 
 .first-place-container div {
     background-color: white;
-    max-width: 80%;
+    max-width: 100%;
     border-radius: var(--box-radius);
     padding: .5em .5em 1em .5em;
 }
 
 .first-place-container img {
     width: 100%;
+    object-fit: cover;
     border-radius: var(--box-radius);
 }
 
