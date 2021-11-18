@@ -1,5 +1,5 @@
 
-
+/* ----- Add Hamster Overlay ----- */
 .overlay {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.66);
@@ -7,9 +7,6 @@
     width: 100vw;
     top: 0;
     left: 0;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
 }
 
 .overlay .dialog {
@@ -20,8 +17,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 2em 1.5rem;
-    border-radius: var(--box-radius);
-    
+    border-radius: var(--box-radius);  
 }
 
 .overlay .dialog form {
@@ -29,7 +25,6 @@
     flex-direction: column;
     font-weight:bold; 
     margin-bottom: 2rem;
-   
 }
 
 .input-field {
@@ -41,16 +36,17 @@
 }
 
 .overlay .dialog form input {
-    /* background-color: white; */ /* Funkar ej utan att ange id likt ovan */
     margin-bottom: 1rem;
     padding: .5rem;
     font-size: 1rem;
     border: none;
     border-radius: var(--box-radius);
+    outline: none;
 }
 
 .overlay .dialog form label {
     margin-bottom: .3rem;
+    margin-left: .2em;
 }
 
 .overlay .dialog .close-btn {
@@ -73,7 +69,7 @@
     background-color: var(--dark-orange);
     color: var(--bg-color);
     transition: .3s all;
-  }
+}
 
 .overlay .dialog .add-movie-btn {
     position: absolute;
@@ -95,9 +91,24 @@
     color: var(--yellow);
 }
 
-.valid {
-	border-color: #14971E;
+.main-btn:disabled {
+    background-color: rgb(187, 187, 187);
+    color: rgb(235, 235, 235);
 }
-.invalid {
-	border-color: #E0471F;
+
+.overlay .dialog form .valid {
+    border: 1px solid #14971E ;
+}
+
+.overlay .dialog form .invalid {
+    border: 1px solid var(--dark-orange) ;
+}
+
+.input-alert {
+    font-size: .8em;
+    font-weight: 400;
+    margin-top: -1em;
+    margin-bottom: 1em;
+    margin-left: .2em;
+    color: var(--dark-orange);
 }

@@ -3,41 +3,28 @@ import { Hamster } from "../../models/Hamster"
 import { useSelector } from 'react-redux'
 import { hamstersSelector } from '../../features/hamsterReducer'
 
-/*
-    TODO:
-    Om det är oavgjort mellan flera hamstrar, ska appen slumpa en av dem. 
-    (Backend endpoint /hamsters/cutest.)
-
-    Om det av någon anledning inte går att nå backend-servern så ska du visa ett användarvänligt felmeddelande här. 
-    Användaren ska också få möjligheten att försöka igen.
-*/
-
-async function sendRequest(saveData: any) {
-    const response = await fetch('/hamsters/cutest')
-    const data = await response.json()
-    console.log("the cutest hamster: ", data)
-    saveData(data)
-}
 
 const CutestHamster = () => {
 
-    const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
-
+    const { loading, hasErrors } = useSelector(hamstersSelector)
     const [hamster, setHamster] = useState<Hamster[] | null>(null);
-    // console.log("HAMSTER DATA: ", hamster)
-    // const dispatch = useDispatch()
 
+    const sendRequest = async () => {
+        const response = await fetch('/hamsters/cutest')
+        const data = await response.json()
+        const randomizer = [data[Math.floor(Math.random() * data.length)]]
+        setHamster(randomizer)
+        //console.log("the cutest hamster: ", data)
+     }
 
     useEffect(() => {
-        sendRequest(setHamster)
+        sendRequest()
     }, [])
-
 
 
     const renderHamster = () => {
         if (loading) return <p>Loading cutest hamster...</p>
         if (hasErrors) return <p>Cannot display hamster...</p>
-
 
         return (
             <div>

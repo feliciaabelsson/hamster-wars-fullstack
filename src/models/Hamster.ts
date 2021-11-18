@@ -10,3 +10,8 @@ export interface Hamster {
     defeats: number,
     games: number,
 }
+
+export interface HamsterUpdate {
+    id: string
+    hamster: Hamster
+}

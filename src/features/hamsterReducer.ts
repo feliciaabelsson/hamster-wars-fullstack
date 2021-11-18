@@ -47,10 +47,10 @@ const hamstersSlice = createSlice({
             state.hamsters = state.hamsters.filter(item => item.id !== id)
         },
         winnerHamsterUpdate(state, action) {
-            const { id, wins, defeats, games } = action.payload;
+            const { id } = action.payload;
             const existingHamster = state.hamsters.find(hamster => hamster.id === id);
             if (existingHamster) {
-                const newItem = { wins: existingHamster.wins + 1, games: existingHamster.games + 1 }
+                // const newItem = { wins: existingHamster.wins + 1, games: existingHamster.games + 1 }
                 // existingHamster.wins = wins
                 // existingHamster.defeats = defeats
                 // existingHamster.games = games
@@ -58,10 +58,10 @@ const hamstersSlice = createSlice({
             }
         },
         loserHamsterUpdate(state, action) {
-            const { id, wins, defeats, games } = action.payload;
+            const { id /*, wins, defeats, games*/ } = action.payload;
             const existingHamster = state.hamsters.find(hamster => hamster.id === id);
             if (existingHamster) {
-                const newItem = { defeats: existingHamster.wins + 1, games: existingHamster.games + 1 }
+                // const newItem = { defeats: existingHamster.wins + 1, games: existingHamster.games + 1 }
                 // existingHamster.wins = wins
                 // existingHamster.defeats = defeats
                 // existingHamster.games = games
@@ -107,22 +107,6 @@ export const createHamster: any = createAsyncThunk(
         return res.data;
     }
 );
-
-// const addHamsterSlice = createSlice({
-//     name: 'hamstergallery',
-//     initialState,
-//     reducers: {},
-//     extraReducers: {
-//         [createHamster.fulfilled]: (state, action) => {
-//             state.push(action.payload)
-//         },
-//     },
-// })
-
-// const {reducer} = addHamsterSlice
-
-
-
 
 
 // Asynchronous thunk action for fetching all hamsters from api

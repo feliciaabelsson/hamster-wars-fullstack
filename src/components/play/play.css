@@ -1,4 +1,5 @@
 
+/* ----- MATCH CONTAINER ----- */
 .play-match-container  {
     text-align: center;
     margin-top: 4em;
@@ -30,7 +31,6 @@
     height: 400px;
     width: 400px;
     object-fit: cover;
-    /* object-position: center center; */
 }
 
 .vote-btn {
@@ -49,6 +49,7 @@
     order: 2;
 }
 
+/* XXX --- MATCH CONTAINER --- XXX */
 
 /* ----- WINNER OVERLAY ----- */
 
@@ -68,11 +69,13 @@
     display: flex;
     align-items: center;
     padding: 1.5em;
+    max-height: 90vh;
 }
 
 .winner-hamster-h1 {
     font-family: var(--feature-font);
     font-size: 2em;
+    margin: 0 0 0.4em 0;
 }
 
 .winner-overlay-container .main-btn {
@@ -87,6 +90,12 @@
     transform: scale(1.0);
 }
 
+.winner-overlay-container .hamster-image {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+/* XXX --- WINNER OVERLAY --- XXX */
 
 /* ----- Responsive Design ------ */
 

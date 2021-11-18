@@ -1,7 +1,6 @@
 import "./gallery.css"
-import { Hamster } from "../../models/Hamster"
-import  heart  from "../../assets/heart.png"
-import  cutlery  from "../../assets/cutlery.png"
+import heart from "../../assets/heart.png"
+import cutlery from "../../assets/cutlery.png"
 
 interface OverlayProps {
     close: () => void;
@@ -10,8 +9,6 @@ interface OverlayProps {
 
 const HamsterOverlay = ({ close, hamster }: OverlayProps) => {
 
-
-    
     const checkAge =(hamster) => {
         console.log(hamster.age)
 
@@ -20,13 +17,12 @@ const HamsterOverlay = ({ close, hamster }: OverlayProps) => {
         } else {
             return `${hamster.age} years old`
         }
-
     }
 
     return (
         <div className="overlay hamster-overlay">
             <div className="hamster-overlay-dialog">
-                <img className="overlay-hamster-image" src={"hamsters/" + hamster.imgName}></img>
+                <img className="overlay-hamster-image" src={"hamsters/" + hamster.imgName} alt="hamster"></img>
                 <div> 
                     <div className="overlay-information-box">
                         <h2>{hamster.name}, <span>{checkAge(hamster)}</span> </h2>

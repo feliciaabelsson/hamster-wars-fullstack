@@ -5,20 +5,18 @@ import { useDispatch } from 'react-redux';
 import { hamstersSelector, removeHamster } from '../../features/hamsterReducer'
 import "./gallery.css"
 import HamsterOverlay from './HamsterOverlay';
-import { Hamster } from "../../models/Hamster"
 
 
 const HamsterGrid = () => {
     const dispatch = useDispatch();
 
     const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
-    const [isShown, setIsShown] = useState(false)
     const [showAddHamsterOverlay, setShowAddHamsterOverlay] = useState<boolean>(false)
     const [hamster, setHamster] = useState()
 
     //Delete hamster
     const handleDeleteClick = (hamster) => {
-        console.log('You delteeeed: ', hamster.id)
+        console.log('You deleted: ', hamster.id)
         dispatch(removeHamster({ id: hamster.id }));
     }
 
@@ -32,28 +30,23 @@ const HamsterGrid = () => {
         // console.log("deleted: ", hamsterData)
     }
 
-
-
     //Overlay
     let addHamsterOverlay: any = null
     if (showAddHamsterOverlay) {
         const closeOverlay = () => setShowAddHamsterOverlay(false)
         addHamsterOverlay = <HamsterOverlay close={closeOverlay} hamster={hamster} />
-        console.log('Hejhååå')
     }
 
     const handleShowMore = (hamster) => {
-        console.log('you clickeeeed', hamster.id)
+        console.log('you clicked', hamster.id)
         setShowAddHamsterOverlay(true)
         setHamster(hamster)
     }
-
 
     // error handling & map successful query data 
     const renderHamsters = () => {
         if (loading) return <p>Loading hamsters...</p>
         if (hasErrors) return <p>Cannot display hamsters...</p>
-
 
         return hamsters.map(hamster =>
             <article key={hamster.id} className="hamster-card">
@@ -65,7 +58,6 @@ const HamsterGrid = () => {
                     Favorite food: {hamster.favFood}
                 </p>
                 <button onClick={() => { deleteHamster(hamster.id); handleDeleteClick(hamster); }} className="remove-btn">Remove</button>
-                {/* {isShown && <div>{hamster.favFood}</div>} */}
             </article>
         )
     }
@@ -78,7 +70,6 @@ const HamsterGrid = () => {
         </div>
     )
 }
-
 
 
 export default HamsterGrid;

@@ -1,4 +1,5 @@
 
+/* ----- Gallery ----- */
 
 .gallery-header {
     display: flex;
@@ -8,7 +9,6 @@
 }
 
 .gallery-title {
-    /* text-align: center; */
     text-transform: uppercase;
     color: var(--light-blue);
     font-size: 3.5em;
@@ -25,23 +25,24 @@
 }
 
 .gallery-header button { 
-   background-color: rgb(187, 187, 187);
-   color: rgb(235, 235, 235);
    min-width: 10em;
    font-weight: 700;
 }
 
 .gallery-header button:hover {
-    background-color: var(--orange);
+    background-color: var(--dark-orange);
     color: rgb(255, 252, 245);
 }
+
+/* XXX --- Gallery --- XXX */
+
+/* ----- Hamster Grid ----- */
 
 .hamster-grid {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 3rem;
-    /* margin-top: 4rem; */
     margin: 4rem 4rem 0 4rem;
 }
 
@@ -64,8 +65,6 @@
     object-fit: cover;  
     border-radius: var(--box-radius);
     cursor: pointer;
-    /* border-top-left-radius: 5px;
-    border-top-right-radius: 5px; */
 }
 
 .hamster-card h3 {
@@ -101,6 +100,8 @@
     color: grey;
 }
 
+/* XXX --- Hamster Grid --- XXX */
+
 /* ----- HamsterOverlay onClick ----- */
 
 .hamster-overlay {
@@ -108,7 +109,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-  
 }
 
 .hamster-overlay-dialog {
@@ -150,7 +150,7 @@
     background-color: var(--dark-orange);
     color: var(--bg-color);
     transition: .3s all;
-  }
+}
 
 .overlay-information-box {
     display: flex;
@@ -179,11 +179,13 @@
 .vl {
     border-left: 2px solid rgba(0, 0, 0, 0.226);
     height: 70px;
-  }
+}
 
-  .span-container {
+.span-container {
     display: flex;
     gap: 1em;
     align-items: center;
     justify-content: center;
-  }
+}
+
+/* XXX --- HamsterOverlay onClick --- XXX */
