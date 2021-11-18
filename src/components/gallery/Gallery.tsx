@@ -6,18 +6,14 @@ import Header from "./Header"
 import HamsterGrid from "./HamsterGrid"
 
 
-
-
 const Gallery = () => {
 
     const [showAddHamsterOverlay, setShowAddHamsterOverlay] = useState<boolean>(false)
 
     const addHamster = (hamster: Hamster) => {
-        // TODO: anropa setMovies
         console.log('App.addHamster anropad med hamster=', hamster)
     }
 
-    /* TODO: Fråga angående error när jag tar bort :any */
     let addHamsterOverlay: any = null
     if (showAddHamsterOverlay) {
         const closeOverlay = () => setShowAddHamsterOverlay(false)

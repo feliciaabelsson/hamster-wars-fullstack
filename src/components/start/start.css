@@ -8,7 +8,7 @@
     margin-top: 10%;
 }
   
-/* --- Introduction --- */
+/* ----- Introduction ----- */
 
 .hamster-wars-intro-logo h1 {
     font-family: var(--feature-font);
@@ -42,7 +42,7 @@
 
 /* XXX --- Introduction --- XXX */
 
-/* --- First Place --- */
+/* --- First Place Hamster --- */
 
 .first-place-container {
     background-color: var(--muddy-yellow);
@@ -85,10 +85,10 @@
     margin: .5em 0;
 }
   
-/* XXX --- First Place --- XXX */
+/* XXX --- First Place Hamster --- XXX */
   
   
-/* Responsive designs */
+/* --- Responsive designs --- */
   
 /* Bigger smartphones*/
 @media screen and (max-width: 1078px) {

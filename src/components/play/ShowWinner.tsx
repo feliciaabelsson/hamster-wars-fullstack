@@ -1,4 +1,3 @@
-import { Hamster } from "../../models/Hamster"
 
 
 interface WinnerProps {
@@ -18,9 +17,9 @@ const ShowWinner = ({ close, hamster }: WinnerProps) => {
                 <div className="match-history">
                     <p>Wins <br /> {hamster.wins}</p>
                     <div className="vl"></div>
-                    <p>Defeats  <br /> {hamster.defeats}</p>
+                    <p>Defeats <br /> {hamster.defeats}</p>
                     <div className="vl"></div>
-                    <p>Games  <br /> {hamster.games}</p>
+                    <p>Games <br /> {hamster.games}</p>
                 </div>
                 <button className="main-btn" onClick={close}> New Game </button>
             </article>
