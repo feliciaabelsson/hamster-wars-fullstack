@@ -15,7 +15,7 @@ const CutestHamster = () => {
         const randomizer = [data[Math.floor(Math.random() * data.length)]]
         setHamster(randomizer)
         //console.log("the cutest hamster: ", data)
-     }
+    }
 
     useEffect(() => {
         sendRequest()
@@ -31,7 +31,7 @@ const CutestHamster = () => {
                 {hamster ?
                     hamster.map(h => (
                         <div key={h.id}>
-                            <img src={"hamsters/" + h.imgName} alt="hamster" className="cutest-hamster-img" />
+                            <img src={"img/" + h.imgName} alt="hamster" className="cutest-hamster-img" />
                             <h4>{h.name}</h4>
                         </div>
                     )) : null

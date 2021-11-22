@@ -51,7 +51,7 @@ const HamsterGrid = () => {
         return hamsters.map(hamster =>
             <article key={hamster.id} className="hamster-card">
                 <img onClick={() => { handleShowMore(hamster); }}
-                    className="hamster-image" src={"hamsters/" + hamster.imgName} alt="hamster" width="300" height="300" >
+                    className="hamster-image" src={"img/" + hamster.imgName} alt="hamster" width="300" height="300" >
                 </img>
                 <h3>{hamster.name}</h3>
                 <p>Age: {hamster.age} <br></br>

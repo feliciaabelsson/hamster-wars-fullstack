@@ -44,26 +44,26 @@ const RandomHamster = () => {
         // setDoneLoadingUpdate(false)
     }
 
-    const updateLoser =  async (loserHamster: Hamster) => {
+    const updateLoser = async (loserHamster: Hamster) => {
         console.log("LOSER: ", loserHamster, loserHamster.id)
         // let defeats = loserHamster.defeats++
         // let games = loserHamster.games++
         // const id = loserHamster.id
 
-         await fetch("http://localhost:1337/hamsters/" + loserHamster.id,
+        await fetch("http://localhost:1337/hamsters/" + loserHamster.id,
             {
                 method: 'PUT',
                 headers: { 'content-type': 'application/json; charset=UTF-8' },
-                body: JSON.stringify({ defeats: loserHamster.defeats+1, games: loserHamster.games+1 }),
+                body: JSON.stringify({ defeats: loserHamster.defeats + 1, games: loserHamster.games + 1 }),
             })
         // const updatedHamster =  response.json()
         // console.log("UPPDATERAD: ", updatedHamster)
-         setLoser(loserHamster)
+        setLoser(loserHamster)
     }
 
     const updateWinner = async (winnerHamster: Hamster) => {
         console.log("WINNER: ", winnerHamster)
-       
+
         await fetch("http://localhost:1337/hamsters/" + winnerHamster.id, {
             method: 'PUT',
             body: JSON.stringify({ wins: winnerHamster.wins + 1, games: winnerHamster.games + 1 }),
@@ -131,7 +131,7 @@ const RandomHamster = () => {
                 {contestants ?
                     contestants.map(hamster => (
                         <article key={hamster.id} className="hamster-card hamster-match-card" >
-                            <img className="contestant-hamster-img" alt="hamster" src={"hamsters/" + hamster.imgName} ></img>
+                            <img className="contestant-hamster-img" alt="hamster" src={"img/" + hamster.imgName} ></img>
                             <button
                                 className="main-btn vote-btn"
                                 onClick={() => { handleCutestClick(hamster); handleShowMore(hamster); }}>
