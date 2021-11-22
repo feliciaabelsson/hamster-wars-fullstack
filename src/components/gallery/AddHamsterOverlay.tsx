@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { hamsterAdded } from "../../features/hamsterReducer"
+import { hamsterAdded, fetchHamsters } from "../../features/hamsterReducer"
 import { Hamster } from "../../models/Hamster"
 import './AddHamsterOverlay.css'
 
@@ -13,8 +13,6 @@ interface OverlayProps {
 const Overlay = ({ close }: OverlayProps) => {
 
     const dispatch = useDispatch()
-    // const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
-    // const [hamsters, setHamsters] = useState()
 
     //Inputfält 
     const [name, setName] = useState<string>('')
@@ -27,6 +25,14 @@ const Overlay = ({ close }: OverlayProps) => {
     const [foodClicked, setFoodClicked] = useState<boolean>(false)
     const [lovesClicked, setLovesClicked] = useState<boolean>(false)
 
+
+    //function för random img från img-mappen
+    const randomImg = (object) => {
+        const randomNum = Math.floor(Math.random() * 40)
+        object.imgName = `hamster-${randomNum}.jpg`
+        setImgName(object.imgName)
+    }
+
     //onChanges 
     const onNameChange = e => {
         setName(e.target.value)
@@ -36,11 +42,6 @@ const Overlay = ({ close }: OverlayProps) => {
         setAge(e.target.value)
         setAgeClicked(true)
     }
-    //När man skriver en siffra blir textraden som en bild i bild-mappen
-    const onImgChange = e => {
-        setImgName(`hamster-${e.target.value}.jpg`)
-        setClickField(true)
-    }
 
     const onFavFoodChange = e => {
         setFavFood(e.target.value)
@@ -49,15 +50,14 @@ const Overlay = ({ close }: OverlayProps) => {
     const onLovesChange = e => {
         setLoves(e.target.value)
         setLovesClicked(true)
-    }   
+    }
 
     //Valideringar
     const nameIsValid = isValidName(name)
     const ageIsValid = isValidAge(age)
-    const imgIsValid = isImgValid(imgName)
     const foodIsValid = isValidFood(favFood)
     const lovesIsValid = isValidLove(loves)
-    const formIsValid = nameIsValid && ageIsValid && foodIsValid && lovesIsValid && imgIsValid
+    const formIsValid = nameIsValid && ageIsValid && foodIsValid && lovesIsValid
 
 
     //Functions
@@ -72,11 +72,6 @@ const Overlay = ({ close }: OverlayProps) => {
         let ageString = String(age)
         if (ageString.includes(',') || ageString.includes('.')) return false
         return true
-    }
-
-    /* Inte rätt validering */
-    function isImgValid(imgName: string): boolean {
-        return imgName.length >=2
     }
 
     function isValidFood(favFood: string): boolean {
@@ -99,10 +94,10 @@ const Overlay = ({ close }: OverlayProps) => {
         defeats: 0
     }
 
-    /* OBS - Måste lösas:
-        Nu måste uppdatera sidan för att hamstern ska synas
-    */
     const addNewHamster = async () => {
+        //Genererar en randomiserad bild 
+        randomImg(hamsterData)
+
         const response = await fetch('http://localhost:1337/hamsters/',
             {
                 method: 'POST',
@@ -113,10 +108,12 @@ const Overlay = ({ close }: OverlayProps) => {
         const newHamster = await response.json()
         console.log("You added a hamster: ", newHamster);
 
+
         dispatch(hamsterAdded(newHamster))
+        //Hämtar hamstrarna på nytt medd uppdaterade listan
+        dispatch(fetchHamsters())
     }
 
-    
     return (
         <div className="overlay">
             <div className="dialog">
@@ -130,11 +127,11 @@ const Overlay = ({ close }: OverlayProps) => {
                         placeholder="Write a name"
                         value={name}
                         onChange={onNameChange}
-                        />
-                        {!nameIsValid && clickedField ?
-                            <span className="input-alert"> Name must be atleast 2 signs.</span>
-                            : null
-                        }
+                    />
+                    {!nameIsValid && clickedField ?
+                        <span className="input-alert"> Name must be atleast 2 signs.</span>
+                        : null
+                    }
                     <label htmlFor="age">Add age</label>
                     <input
                         className={ageIsValid ? 'valid' : 'invalid'}
@@ -144,21 +141,8 @@ const Overlay = ({ close }: OverlayProps) => {
                         value={age}
                         onChange={onAgeChange}
                     />
-                     {!ageIsValid && ageClicked ?
+                    {!ageIsValid && ageClicked ?
                         <span className="input-alert"> Age must be a number and higher than 0.</span>
-                        : null
-                    }
-                    <label htmlFor="img">Pick a number between 1-40</label>
-                    <input
-                        className={imgIsValid ? 'valid' : 'invalid'}
-                        id="img"
-                        type="text"
-                        placeholder="Image URL"
-                        value={imgName}
-                        onChange={onImgChange}
-                    />
-                    {!imgIsValid && clickedField ?
-                        <span className="input-alert"> Must be a number and higher than 0.</span>
                         : null
                     }
                     <label htmlFor="favFood">Add favorite food</label>

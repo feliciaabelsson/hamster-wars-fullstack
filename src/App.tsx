@@ -1,22 +1,17 @@
 import { Link, Switch, Route } from 'react-router-dom'
-import './App.css';
+import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { fetchHamsters } from './features/hamsterReducer'
+import { Hamster } from "./models/Hamster"
 import Gallery from './components/gallery/Gallery';
 import Play from './components/play/Play';
 import Start from './components/start/Start';
-
-import { useDispatch, /*useSelector*/ } from 'react-redux'
-import { useEffect, useState } from 'react'
-// import our recipes selector & fetchHamsters thunk
-import { fetchHamsters } from './features/hamsterReducer'
-import { Hamster } from "./models/Hamster"
+import './App.css';
 
 
 function App() {
 
   const dispatch = useDispatch()
-  // const { hamsters } = useSelector(hamstersSelector)
-  // log the data we have pulled into the recipes variable
-  // console.log('Hamsters: ', hamsters);
 
   // dispatch our thunk when component first mounts
   useEffect(() => {

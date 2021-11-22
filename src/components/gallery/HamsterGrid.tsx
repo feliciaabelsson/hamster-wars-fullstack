@@ -26,7 +26,6 @@ const HamsterGrid = () => {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             })
-        // const hamsterData = await response.json()
         // console.log("deleted: ", hamsterData)
     }
 

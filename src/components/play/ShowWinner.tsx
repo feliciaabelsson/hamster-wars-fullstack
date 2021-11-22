@@ -11,7 +11,7 @@ const ShowWinner = ({ close, hamster }: WinnerProps) => {
         <div className="winner-overlay-container">
             <article className="hamster-card winner-hamster-card">
                 <h1 className="winner-hamster-h1" >You woted for</h1>
-                <img className="hamster-image" src={"hamsters/" + hamster.imgName} alt="hamster" width="300" height="300" ></img>
+                <img className="hamster-image" src={"img/" + hamster.imgName} alt="hamster" width="300" height="300" ></img>
                 <h2>{hamster.name}</h2>
                 <h4>Match history</h4>
                 <div className="match-history">
