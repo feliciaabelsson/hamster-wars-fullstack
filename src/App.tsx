@@ -1,7 +1,7 @@
 import { Link, Switch, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { fetchHamsters } from './features/hamsterReducer'
+ import { fetchHamsters } from './features/hamsterReducer'
 import { Hamster } from "./models/Hamster"
 import Gallery from './components/gallery/Gallery';
 import Play from './components/play/Play';
@@ -13,26 +13,27 @@ function App() {
 
   const dispatch = useDispatch()
 
-  // dispatch our thunk when component first mounts
+  //dispatch our thunk when component first mounts
   useEffect(() => {
     dispatch(fetchHamsters())
   }, [dispatch])
 
 
-  useEffect(() => {
-    sendRequest(setData)
-  }, [])
+  // useEffect(() => {
+  //   sendRequest(setData)
+  // }, [])
 
-  //Attempt 2 att fetcha alla hamstrar från api
-  // const [allHamsters, setAllHamsters] = useState<Hamster[] | null>(null)
-  const [data, setData] = useState<Hamster[] | null>(null)
+ 
+  // const [data, setData] = useState<Hamster[] | null>(null)
 
-  async function sendRequest(saveData: any) {
-    const response = await fetch('/hamsters/') //Det funkar bra med ex: /hamsters/random men inte endast /hamsters
-    const data = await response.text()
-    saveData(data)
-    console.log("I fetched the hamsters ", data)
-  }
+  // async function sendRequest(saveData: any) {
+  //   const response = await fetch('/hamsters') 
+  //   const data = await response.json()
+  //   saveData(data)
+  //   console.log("I fetched the hamsters ", data)
+
+   
+  // }
 
 
   return (

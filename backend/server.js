@@ -1,21 +1,17 @@
 // const { urlencoded } = require("express");
+const hamsterRouter = require("./routes/hamsters");
 const express = require("express");
 const app = express();
 const cors = require('cors')
-const hamsterRouter = require("./routes/hamsters");
 
 
 // first run environmental variable, if not run port 1337
 // environmental variables is good for sercrets
 const PORT = process.env.PORT || 1337;
 
-app.use( cors())
-app.use((req, res, next) => {
-  console.log(`Request: ${req.method} ${req.url}`);
-  next();
-});
 
 // MIDDLEWARES
+app.use( cors());
 app.use(express.urlencoded({ extended: true }));
 // för att skicka data i json format
 app.use(express.json());
@@ -26,17 +22,23 @@ app.use((req, res, next) => {
 });
 
 // Routes
-// talar om att hamstersRouter middleware ska användas för alla routes som börjar med /hamsters
-app.use("/hamsters", hamsterRouter);
 
 // MIDDLEWARE - statiska sidor
-app.use("/img", express.static(__dirname + '/hamsters'))
+app.use("/hamsters", hamsterRouter);
+app.use("/img", express.static(__dirname + '/img'))
 app.use("/", express.static(__dirname + '/../build'))
+// talar om att hamstersRouter middleware ska användas för alla routes som börjar med /hamsters
 
 
+
+// app.get('*', (req, res) => {
+//   res.sendFile(__dirname + '/build/index.html')
+// }) 
 
 app.get('*', (req, res) => {
-  res.sendFile(__dirname + '/build/index.html')
+	var path = require('path');
+  res.sendFile(path.resolve(__dirname + '/../build/index.html'))
+
 })
 
 app.listen(PORT, () => {

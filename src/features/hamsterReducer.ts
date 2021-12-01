@@ -72,16 +72,6 @@ const hamstersSlice = createSlice({
 })
 
 
-// const updateWinner = async (x: Hamster) => {
-//     setWinner(x)
-//     //PUT update wins ++, games ++
-//     await fetch("http://localhost:1337/hamsters/" + x.id, {
-//         method: 'PUT',
-//         body: JSON.stringify({ wins: x.wins + 1, games: x.games + 1 }),
-//         headers: { "Content-Type": "application/json" }
-//     })
-// }
-
 // The actions generated from the slice
 export const { getHamsters, getHamstersSuccess, getHamstersFailure, hamsterAdded, removeHamster } = hamstersSlice.actions
 
@@ -109,22 +99,22 @@ export const createHamster: any = createAsyncThunk(
 );
 
 
-// Asynchronous thunk action for fetching all hamsters from api
+//Asynchronous thunk action for fetching all hamsters from api
 export function fetchHamsters() {
     return async dispatch => {
         dispatch(getHamsters())
-        // dispatch(removeHamster())
 
         try {
-            const response = await fetch('http://localhost:1337/hamsters/')
+            const response = await fetch('/hamsters/')
             const data = await response.json()
-            console.log("Data from fetch in reducer: ", data)
+            //console.log("Data from fetch in reducer: ", data)
             dispatch(getHamstersSuccess(data))
         } catch (error) {
             dispatch(getHamstersFailure())
         }
     }
 }
+
 
 
 

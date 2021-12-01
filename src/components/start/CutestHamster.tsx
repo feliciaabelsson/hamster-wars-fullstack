@@ -14,7 +14,7 @@ const CutestHamster = () => {
         const data = await response.json()
         const randomizer = [data[Math.floor(Math.random() * data.length)]]
         setHamster(randomizer)
-        //console.log("the cutest hamster: ", data)
+        console.log("the cutest hamster: ", data)
     }
 
     useEffect(() => {

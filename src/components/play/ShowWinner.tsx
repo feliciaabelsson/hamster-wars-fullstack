@@ -1,4 +1,5 @@
 
+import { Hamster } from "../../models/Hamster"
 
 interface WinnerProps {
     close: () => void;
@@ -6,7 +7,7 @@ interface WinnerProps {
 }
 
 const ShowWinner = ({ close, hamster }: WinnerProps) => {
-    console.log('Här ska vinnaren vara som heter: ', hamster.name)
+    // console.log('Här ska vinnaren vara som heter: ', hamster.name)
     return (
         <div className="winner-overlay-container">
             <article className="hamster-card winner-hamster-card">

@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { hamsterAdded, fetchHamsters } from "../../features/hamsterReducer"
+// import { hamsterAdded } from "../../features/hamsterReducer"
 import { Hamster } from "../../models/Hamster"
 import './AddHamsterOverlay.css'
 
@@ -98,7 +98,7 @@ const Overlay = ({ close }: OverlayProps) => {
         //Genererar en randomiserad bild 
         randomImg(hamsterData)
 
-        const response = await fetch('http://localhost:1337/hamsters/',
+        const response = await fetch('/hamsters/',
             {
                 method: 'POST',
                 headers: { Accept: 'application/json', "Content-Type": "application/json" },
@@ -109,9 +109,9 @@ const Overlay = ({ close }: OverlayProps) => {
         console.log("You added a hamster: ", newHamster);
 
 
-        dispatch(hamsterAdded(newHamster))
+        // dispatch(hamsterAdded(newHamster))
         //Hämtar hamstrarna på nytt medd uppdaterade listan
-        dispatch(fetchHamsters())
+        // dispatch(fetchHamsters())
     }
 
     return (

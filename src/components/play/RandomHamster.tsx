@@ -7,7 +7,11 @@ import { hamstersSelector } from '../../features/hamsterReducer'
 
 
 
+
 const RandomHamster = () => {
+
+
+
     const { loading, hasErrors } = useSelector(hamstersSelector)
     const [contestants, setContestants] = useState<Hamster[] | null>(null)
     const [/*showResult*/, setShowResult] = useState<boolean>(false)
@@ -20,6 +24,7 @@ const RandomHamster = () => {
         const res1 = await fetch('/hamsters/random')
         //console.log("response", res1)
         const data1 = await res1.json()
+        console.log("data innan: ", data1.name, "games: " ,data1.games)
         //console.log("hamster1 ", data1)
         let res2 = await fetch('/hamsters/random')
         let data2 = await res2.json()
@@ -44,65 +49,97 @@ const RandomHamster = () => {
         // setDoneLoadingUpdate(false)
     }
 
+    
+
+
+
+
     const updateLoser = async (loserHamster: Hamster) => {
-        console.log("LOSER: ", loserHamster, loserHamster.id)
+        console.log("LOSER: ", loserHamster.id, loserHamster.defeats, ' + ', loserHamster.games)
+        
         // let defeats = loserHamster.defeats++
         // let games = loserHamster.games++
         // const id = loserHamster.id
 
-        await fetch("http://localhost:1337/hamsters/" + loserHamster.id,
+        await fetch("/hamsters/" + loserHamster.id,
             {
                 method: 'PUT',
-                headers: { 'content-type': 'application/json; charset=UTF-8' },
-                body: JSON.stringify({ defeats: loserHamster.defeats + 1, games: loserHamster.games + 1 }),
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ defeats: loserHamster.defeats+1, games: loserHamster.games+1 }),
             })
+            setLoser(loserHamster)
         // const updatedHamster =  response.json()
         // console.log("UPPDATERAD: ", updatedHamster)
-        setLoser(loserHamster)
+       
     }
 
     const updateWinner = async (winnerHamster: Hamster) => {
-        console.log("WINNER: ", winnerHamster)
+        console.log("WINNER: ", winnerHamster.id, winnerHamster.name, winnerHamster.wins, ' + ', winnerHamster.games)
+        
+        // const id = winnerHamster.id
+        // let wins = winnerHamster.wins ++
+        // let games = winnerHamster.games ++
 
-        await fetch("http://localhost:1337/hamsters/" + winnerHamster.id, {
-            method: 'PUT',
-            body: JSON.stringify({ wins: winnerHamster.wins + 1, games: winnerHamster.games + 1 }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        setWinner(winnerHamster)
+        await fetch("/hamsters/" + winnerHamster.id,
+            {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ wins: winnerHamster.wins+1, games: winnerHamster.games+1 }),
+            })
+            setWinner(winnerHamster)
+        
+        // try {
+        //     const response = await fetch('/hamsters/' + winnerHamster.id, {
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'Accept' : 'application/json'
+        //         },
+        //         method: 'PUT',
+        //         body: JSON.stringify({ wins: winnerHamster.wins + 1, games: winnerHamster.games + 1 })
+        //     })
+        //     // .then((response) => response.json())
+        //     // .then((data) => {console.log("the new data: ", data)})
+        // } 
+        // catch(error) {
+        //     console.log('error:', error);
+        // }
+        // setWinner(winnerHamster)
     }
 
 
-    const handleCutestClick = (hamster: Hamster) => {
+
+
+
+    const handleCutestClick = async (x: Hamster, y:Hamster) => {
         //setWinner(hamster)
 
+        await updateWinner(x)
+		await updateLoser(y)
+
+        
         //om det inte finns några tävlande
-        if (!contestants) {
-            return
-        }
+        // if (!contestants) {
+        //     return
+        // }
 
-        //Om hamster id är lika med id på den man klikcade på ska förloraren vara den andra hamstern i listan
-        if (hamster.id === contestants[0].id) {
-            setLoser(contestants[1])
-            updateLoser(contestants[1])
-            updateWinner(contestants[0])
-            // newGame()
-        } else { //annars ska den andra vara förloraren
-            setLoser(contestants[0])
-            updateLoser(contestants[0])
-            updateWinner(contestants[1])
-            // newGame()
-        }
+        // //Om hamster id är lika med id på den man klikcade på ska förloraren vara den andra hamstern i listan
+        // if (hamster.id === contestants[0].id) {
+        //     setLoser(contestants[1])
+        //     setWinner(contestants[0])
+        //     updateLoser(contestants[1])
+        //     updateWinner(contestants[0])
+            
+        //     // newGame()
+        // } else { //annars ska den andra vara förloraren
+        //     setLoser(contestants[0])
+        //     setWinner(contestants[1])
+        //     updateLoser(contestants[0])
+        //     updateWinner(contestants[1])
+        //     console.log(winner)
+        // }
 
-        console.log(hamster)
+        // console.log("this is the clicked hamster: ", hamster)
         setShowAddHamsterOverlay(true)
-        // showOverlay(hamster)
-        // newGame()
-        // await updateMatches(x, y)    
-        // updateWinner(hamster)
-        // setDoneLoadingUpdate(true)
     }
 
 
@@ -111,16 +148,18 @@ const RandomHamster = () => {
     if (showAddHamsterOverlay) {
         const closeOverlay = () => { setShowAddHamsterOverlay(false); newGame() }
         addHamsterOverlay = <ShowWinner close={closeOverlay} hamster={winner} />
-        console.log('Visar overlayen med vinnarhamstern')
+        // console.log('Visar overlayen med vinnarhamstern')
     }
 
     const handleShowMore = (hamster) => {
-        console.log('you clickeeeed', hamster.name)
+        //console.log('you clickeeeed', hamster.name)
         setShowAddHamsterOverlay(true)
         setWinner(hamster)
         // setHamster(hamster)
     }
 
+
+    
     const renderHamsters = () => {
         if (loading) return <p>Loading hamsters...</p>
         if (hasErrors) return <p>Cannot display hamsters...</p>
@@ -134,8 +173,8 @@ const RandomHamster = () => {
                             <img className="contestant-hamster-img" alt="hamster" src={"img/" + hamster.imgName} ></img>
                             <button
                                 className="main-btn vote-btn"
-                                onClick={() => { handleCutestClick(hamster); handleShowMore(hamster); }}>
-                                I'm the CUTEST
+                                onClick={() => { handleCutestClick(hamster, contestants?.filter(l=>l!==hamster)[0])  /*handleShowMore(hamster);*/ }}>
+                                I'm the CUTEST 
                             </button>
                             <h3>{hamster.name}</h3>
                         </article>

@@ -6,7 +6,7 @@ const db = connect();
 const HAMSTERS = "hamsters";
 
 const {isHamsterObject, isHamster} = require("../validations/validation");
-
+const allowed = ['name', 'age', 'favFood', 'loves', 'imgName', 'wins', 'defeats', 'games']
 
 
 // GET ENDPOINTS
@@ -67,17 +67,46 @@ router.post("/", async (req, res) => {
 
 //PUT ENDPOINTS
 router.put("/:id", async (req, res) => { 		
-	let maybeBody = req.body
-  let maybeHamster = await getOneHamster(req.params.id)
+	// let maybeBody = req.body
+  // let maybeHamster = await getOneHamster(req.params.id)
   
-  if(!maybeHamster) {
-    res.status(400).send('not a hamster with this id')
-  } else if(!isHamsterObject(maybeBody, 'some')){
-		res.status(400).send('hamster body is not correct');
-	} else {
-    await updateHamster(req.params.id, maybeBody)
-    res.sendStatus(200)
+  // if(!maybeHamster) {
+  //   res.status(400).send('not a hamster with this id')
+  // } else if(!isHamsterObject(maybeBody, 'some')){
+	// 	res.status(400).send('hamster body is not correct');
+	// } else {
+  //   await updateHamster(req.params.id, maybeBody)
+  //   res.sendStatus(200)
+  // }
+
+  const docRef = db.collection(HAMSTERS).doc(req.params.id)
+  const docSnapshot = await docRef.get()
+  let keys = Object.keys(req.body)
+
+  //Kolla att man inte skickar in ett tomt objekt som body
+  if (keys.length === 0) {
+      res.sendStatus(400)
+      return
   }
+
+  //Kolla att man skickar in fields som existerar
+  for (const key of keys) {
+      if (!allowed.includes(key)) {
+          res.sendStatus(400)
+          return
+      }
+  }
+
+  //Kolla om det angivna id:t existerar
+  if (docSnapshot.exists) {
+      await docRef.update(req.body)
+      res.sendStatus(200)
+      return
+  }
+
+  //Om man skickar in ett felaktigt id
+  res.sendStatus(404)
+
 })
 
 
