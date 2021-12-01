@@ -1,7 +1,5 @@
 # Hamster-wars fullstack app
 
-![Front page of the Hamster-wars app](https://github.com/feliciaabelsson/hamster-wars-fullstack/blob/main/src/assets/startpage-hamsterwars.png)
-
 
 * Backend: REST API med Node.js, Express och Firestore
 * Frontend: web app med React och TypeScript
@@ -21,6 +19,7 @@ På denna sida visas två slumpade hamstrar där användaren har möjlighet att 
 ### Gallery
 I gallerit presenteras alla hamstrar och det finns en förklarande text som beskriver användarens möjligheter och användningsområenden. Det finns även valmöjligheten att radera varje hamster för sig. Klickar användaren på en vald hamster visas en overlay med mer information om just den hamstern. Det finns även funktionaliteten att lägga till en ny hamster genom ett formulär som använder validering.  
 
+![Front page of the Hamster-wars app](https://github.com/feliciaabelsson/hamster-wars-fullstack/blob/main/src/assets/startpage-hamsterwars.png)
 
 
 
