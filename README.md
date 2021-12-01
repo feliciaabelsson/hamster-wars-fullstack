@@ -1,5 +1,7 @@
 # Hamster-wars fullstack app
 
+![Front page of the Hamster-wars app](assets/startpage-hamsterwars.png)
+
 * Backend: REST API med Node.js, Express och Firestore
 * Frontend: web app med React och TypeScript
 
