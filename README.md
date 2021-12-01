@@ -1,6 +1,6 @@
 # Hamster-wars fullstack app
 
-![Front page of the Hamster-wars app](/assets/startpage-hamsterwars.png)
+![Front page of the Hamster-wars app](https://github.com/feliciaabelsson/hamster-wars-fullstack/blob/main/src/assets/startpage-hamsterwars.png)
 
 
 * Backend: REST API med Node.js, Express och Firestore
