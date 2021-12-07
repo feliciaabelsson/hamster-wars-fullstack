@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import { hamsterAdded } from "../../features/hamsterReducer"
+import { fetchHamsters } from "../../features/hamsterReducer"
 import { Hamster } from "../../models/Hamster"
 import './AddHamsterOverlay.css'
 
@@ -111,7 +111,7 @@ const Overlay = ({ close }: OverlayProps) => {
 
         // dispatch(hamsterAdded(newHamster))
         //Hämtar hamstrarna på nytt medd uppdaterade listan
-        // dispatch(fetchHamsters())
+        dispatch(fetchHamsters())
     }
 
     return (
@@ -163,7 +163,7 @@ const Overlay = ({ close }: OverlayProps) => {
                         className={lovesIsValid ? 'valid' : 'invalid'}
                         id="loves"
                         type="text"
-                        placeholder="Loves"
+                        placeholder="Loves to..."
                         value={loves}
                         onChange={onLovesChange}
                     />

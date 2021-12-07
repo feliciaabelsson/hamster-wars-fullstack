@@ -1,10 +1,9 @@
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { hamstersSelector, removeHamster } from '../../features/hamsterReducer'
 import "./gallery.css"
-import { Hamster } from "../../models/Hamster"
 import HamsterOverlay from './HamsterOverlay';
 
 
@@ -14,31 +13,7 @@ const HamsterGrid = () => {
     const { hamsters, loading, hasErrors } = useSelector(hamstersSelector)
     const [showAddHamsterOverlay, setShowAddHamsterOverlay] = useState<boolean>(false)
     const [hamster, setHamster] = useState()
-    
-    // async function sendRequest(setAllHamsters:any) {
-    //     try {
-    //         const response = await fetch('/hamsters', {
-    //             headers: {
-                    
-    //                 'Accept' : 'application/json'
-    //             }
-    //         })
-    //         .then((response) => response.json())
-	// 		// const data = await response.json()
-    //         .then((data) => {console.log(data)})
-	// 		// setAllHamsters(data)
-    //         // console.log('this is the data: ', data)
-	// 	} catch (error) {
-    //         console.log('error:', error);
-	// 	}
-	// }
-    
-    // useEffect(() => {
-    //     sendRequest(setHamsterData)
-    // }, [])
-
-    // const [hamsterData, setHamsterData] = useState<Hamster[]>(Array)
-    
+      
     
     //Delete hamster in store
     const handleDeleteClick = (hamster) => {
@@ -55,8 +30,6 @@ const HamsterGrid = () => {
             })
         // console.log("deleted: ", hamsterData)
     }
-
-    
 
     //Overlay
     let addHamsterOverlay: any = null

@@ -1,8 +1,8 @@
 import { Link, Switch, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
  import { fetchHamsters } from './features/hamsterReducer'
-import { Hamster } from "./models/Hamster"
+// import { Hamster } from "./models/Hamster"
 import Gallery from './components/gallery/Gallery';
 import Play from './components/play/Play';
 import Start from './components/start/Start';

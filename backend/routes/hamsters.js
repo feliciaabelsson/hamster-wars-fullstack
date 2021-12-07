@@ -89,7 +89,6 @@ router.put("/:id", async (req, res) => {
       return
   }
 
-  //Kolla att man skickar in fields som existerar
   for (const key of keys) {
       if (!allowed.includes(key)) {
           res.sendStatus(400)
@@ -97,14 +96,12 @@ router.put("/:id", async (req, res) => {
       }
   }
 
-  //Kolla om det angivna id:t existerar
   if (docSnapshot.exists) {
       await docRef.update(req.body)
       res.sendStatus(200)
       return
   }
 
-  //Om man skickar in ett felaktigt id
   res.sendStatus(404)
 
 })
