@@ -1,14 +1,12 @@
 
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Hamster } from "../../models/Hamster"
 import ShowWinner from './ShowWinner'
-import { hamstersSelector, fetchHamsters } from '../../features/hamsterReducer'
+import { hamstersSelector } from '../../features/hamsterReducer'
 
 
 const RandomHamster = () => {
-
-    const dispatch = useDispatch();
 
     const { loading, hasErrors } = useSelector(hamstersSelector)
     const [contestants, setContestants] = useState<Hamster[] | null>(null)
@@ -19,10 +17,7 @@ const RandomHamster = () => {
     const getRandomHamsters = async (saveData: any) => {
         //Hämtar data genom fetch
         const res1 = await fetch('/hamsters/random')
-        //console.log("response", res1)
         const data1 = await res1.json()
-        console.log("data innan: ", data1.name, "games: " ,data1.games)
-        //console.log("hamster1 ", data1)
         let res2 = await fetch('/hamsters/random')
         let data2 = await res2.json()
 
@@ -46,22 +41,25 @@ const RandomHamster = () => {
 
 
     const updateLoser = async (loserHamster: Hamster) => {
-        console.log("LOSER: ", loserHamster.id, loserHamster.defeats, ' + ', loserHamster.games)
         let defeats = loserHamster.defeats + 1
         let games = loserHamster.games + 1 
         const id = loserHamster.id
 
-        await fetch("/hamsters/" + id,
-            {
-                method: 'PUT',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ defeats: defeats, games: games }),
-            })
-            setLoser(loserHamster)
+        try {
+            await fetch("/hamsters/" + id,
+                {
+                    method: 'PUT',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({ defeats: defeats, games: games }),
+                })
+        } 
+        catch(error) {
+            console.log('error: ', error)
+        }
+        setLoser(loserHamster)
     }
 
     const updateWinner = async (winnerHamster: Hamster) => {
-        console.log("WINNER: ", winnerHamster.id, winnerHamster.name, winnerHamster.wins, ' + ', winnerHamster.games)
         const id = winnerHamster.id
         let wins = winnerHamster.wins +1
         let games = winnerHamster.games +1
@@ -78,7 +76,6 @@ const RandomHamster = () => {
             console.log('error: ', error)
         }
         setWinner(winnerHamster)
-        dispatch(fetchHamsters());
     }
 
 
@@ -88,7 +85,6 @@ const RandomHamster = () => {
         setShowAddHamsterOverlay(true)
     }
 
-
     //Overlay
     let addHamsterOverlay: any = null
     if (showAddHamsterOverlay) {
@@ -96,11 +92,9 @@ const RandomHamster = () => {
         addHamsterOverlay = <ShowWinner close={closeOverlay} hamster={winner} />
     }
 
-    
     const renderHamsters = () => {
         if (loading) return <p>Loading hamsters...</p>
         if (hasErrors) return <p>Cannot display hamsters...</p>
-
 
         return (
             <div className="play-container">
@@ -122,7 +116,6 @@ const RandomHamster = () => {
             </div>
         )
     }
-
 
     return (
         <div >

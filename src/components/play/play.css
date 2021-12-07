@@ -2,14 +2,14 @@
 /* ----- MATCH CONTAINER ----- */
 .play-match-container  {
     text-align: center;
-    margin-top: 4em;
+    margin-top: 2em;
 }
 
 .hamster-match-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 6em;
+    margin-top: 2em;
 }
 
 .hamster-match-container .vs-string {
@@ -148,11 +148,11 @@
 
     .play-container {
         flex-direction: column;
-        gap: 4em;
+        gap: 3em;
     }
 
     .hamster-match-container {
-        margin-top: 6em;
+        margin-top: 2em;
     }
 
 }
@@ -166,7 +166,7 @@
     }
 
     .hamster-match-container {
-        margin-top: 6em;
+        margin-top: 2em;
     }
 
     .hamster-match-card {

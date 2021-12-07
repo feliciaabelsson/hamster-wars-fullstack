@@ -22,8 +22,6 @@ const ShowWinner = ({ close, hamster }: WinnerProps) => {
         updatedWinner()
     }, [hamster.id, hamster.games, hamster.wins, hamster.defeats])
 
-
-    console.log(hamster)
     return (
         <div className="winner-overlay-container">
             <article className="hamster-card winner-hamster-card">

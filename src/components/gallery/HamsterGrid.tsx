@@ -17,7 +17,7 @@ const HamsterGrid = () => {
     
     //Delete hamster in store
     const handleDeleteClick = (hamster) => {
-        console.log('You deleted: ', hamster.id)
+        // console.log('You deleted: ', hamster.id)
         dispatch(removeHamster({ id: hamster.id }));
     }
 
@@ -39,7 +39,7 @@ const HamsterGrid = () => {
     }
 
     const handleShowMore = (hamster) => {
-        console.log('you clicked', hamster.id)
+        // console.log('you clicked', hamster.id)
         setShowAddHamsterOverlay(true)
         setHamster(hamster)
     }

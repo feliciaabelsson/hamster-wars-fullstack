@@ -10,7 +10,6 @@ interface OverlayProps {
 const HamsterOverlay = ({ close, hamster }: OverlayProps) => {
 
     const checkAge = (hamster) => {
-        console.log(hamster.age)
 
         if (hamster.age <= 1) {
             return `${hamster.age} year old`

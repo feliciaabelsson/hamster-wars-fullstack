@@ -98,18 +98,16 @@ const Overlay = ({ close }: OverlayProps) => {
         //Genererar en randomiserad bild 
         randomImg(hamsterData)
 
-        const response = await fetch('/hamsters/',
+        await fetch('/hamsters/',
             {
                 method: 'POST',
                 headers: { Accept: 'application/json', "Content-Type": "application/json" },
                 body: JSON.stringify(hamsterData)
             })
 
-        const newHamster = await response.json()
-        console.log("You added a hamster: ", newHamster);
+        // const newHamster = await response.json()
+        // console.log("You added a hamster: ", newHamster);
 
-
-        // dispatch(hamsterAdded(newHamster))
         //Hämtar hamstrarna på nytt medd uppdaterade listan
         dispatch(fetchHamsters())
     }
