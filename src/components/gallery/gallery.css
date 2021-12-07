@@ -173,7 +173,10 @@
     display: flex;
     gap: 1em;
     justify-content: center;
-    text-align: center;
+    text-align: center; 
+}
+
+.hamster-overlay .match-history{
     background-color: var(--muddy-yellow);
     padding: 1rem;
     border-radius: var(--box-radius);

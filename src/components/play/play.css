@@ -95,6 +95,10 @@
     object-fit: cover;
 }
 
+.winner-overlay-container .show-winner-match {
+    background-color: none;
+}
+
 /* XXX --- WINNER OVERLAY --- XXX */
 
 /* ----- Responsive Design ------ */
