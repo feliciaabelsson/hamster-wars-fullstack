@@ -25,6 +25,7 @@
 
 * {
   font-family: var(--open-sans);
+  color: var(--darkest);
 }
 
 .main-btn {
@@ -61,8 +62,6 @@
 
 /* --- Nav --- */
 
-
-
 .nav-link {
   color: var(--light-blue);
   text-decoration: none;
@@ -73,7 +72,6 @@
 .nav-link:hover {
   color: var(--orange);
   transition: var(--transition-hover);
-  /* font-size: 1.1rem; */ /* TODO: gör så att texten kan hovras större utan att störa annat*/
 }
 
 .nav-link:active {
@@ -81,3 +79,20 @@
 }
 
 /* XXX --- Nav --- XXX */
+
+/* Iphone X and smaller */
+@media screen and (max-width: 440px) {
+
+  .App {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .App nav {
+    padding-left: 1em;
+  }
+
+
+
+
+}

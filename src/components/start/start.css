@@ -10,6 +10,10 @@
   
 /* ----- Introduction ----- */
 
+.hamster-wars-intro-logo {
+    margin-top: -2rem;
+}
+
 .hamster-wars-intro-logo h1 {
     font-family: var(--feature-font);
     color: var(--dark-orange);
@@ -94,6 +98,9 @@
 @media screen and (max-width: 1078px) {
     .introduction-container {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-container {
@@ -101,10 +108,17 @@
     }
 
     .introduction-container p {
-        max-width: 100%;
-        margin: 2em 0;
+        max-width: 90%;
+        margin: 0 0 2em 0;
     }
-    
+
+    .hero-container button {
+        min-width: 17rem;
+    }
+
+    .hamster-wars-intro-logo {
+        margin-top: 0;
+    }  
 }
   
 /* Small smartphones */
@@ -115,6 +129,10 @@
 
     .first-place-container {
         min-width: 1em;
+    }
+
+    .hamster-wars-intro-logo {
+        margin-top: 0;
     }
 }
 
@@ -127,5 +145,9 @@
 
     .first-place-container {
         min-width: 1em;
+    }
+
+    .hamster-wars-intro-logo {
+        margin-top: 0;
     }
 }

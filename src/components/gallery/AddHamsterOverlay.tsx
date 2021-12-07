@@ -105,9 +105,6 @@ const Overlay = ({ close }: OverlayProps) => {
                 body: JSON.stringify(hamsterData)
             })
 
-        // const newHamster = await response.json()
-        // console.log("You added a hamster: ", newHamster);
-
         //Hämtar hamstrarna på nytt medd uppdaterade listan
         dispatch(fetchHamsters())
     }

@@ -162,7 +162,7 @@
 
     .play-container {
         flex-direction: column;
-        gap: 3em;
+        gap: 1em;
     }
 
     .hamster-match-container {
@@ -175,6 +175,7 @@
 
     .hamster-match-card img{
         max-width: 100%;
+        max-height: 15rem;
     }
 
 }

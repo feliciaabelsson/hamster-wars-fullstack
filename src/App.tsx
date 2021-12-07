@@ -19,23 +19,6 @@ function App() {
   }, [dispatch])
 
 
-  // useEffect(() => {
-  //   sendRequest(setData)
-  // }, [])
-
- 
-  // const [data, setData] = useState<Hamster[] | null>(null)
-
-  // async function sendRequest(saveData: any) {
-  //   const response = await fetch('/hamsters') 
-  //   const data = await response.json()
-  //   saveData(data)
-  //   console.log("I fetched the hamsters ", data)
-
-   
-  // }
-
-
   return (
     <div className="App">
       <nav>
